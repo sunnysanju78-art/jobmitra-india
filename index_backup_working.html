@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JOBMITRA INDIA 🇮🇳</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+header{
+  background:linear-gradient(135deg,#0b3d91,#1565c0);
+  color:white;
+  padding:18px 14px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 3px 12px rgba(0,0,0,.18);
+}
+
+.brand{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand h1{
+  font-size:23px;
+}
+
+.live{
+  background:#19c37d;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.subtitle{
+  margin-top:6px;
+  font-size:13px;
+  opacity:.9;
+}
+
+.searchBox{
+  margin-top:14px;
+  display:flex;
+  gap:8px;
+}
+
+.searchBox input{
+  width:100%;
+  border:0;
+  outline:0;
+  border-radius:10px;
+  padding:13px;
+  font-size:14px;
+}
+
+.searchBtn{
+  border:0;
+  border-radius:10px;
+  padding:0 15px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+nav{
+  background:white;
+  padding:10px;
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  position:sticky;
+  top:118px;
+  z-index:9;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+nav button{
+  border:1px solid #d9e1ee;
+  background:#fff;
+  border-radius:20px;
+  padding:9px 13px;
+  white-space:nowrap;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:12px;
+}
+
+nav button.active{
+  background:#1565c0;
+  color:white;
+  border-color:#1565c0;
+}
+
+.filters{
+  padding:12px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+select{
+  width:100%;
+  padding:10px;
+  border:1px solid #d5ddea;
+  border-radius:9px;
+  background:white;
+  outline:0;
+  font-size:12px;
+}
+
+.status{
+  padding:0 12px 10px;
+  font-weight:bold;
+  font-size:14px;
+}
+
+#count{
+  color:#1565c0;
+}
+
+#jobs{
+  padding:0 12px 25px;
+  display:grid;
+  gap:12px;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  padding:15px;
+  box-shadow:0 3px 12px rgba(24,48,80,.09);
+  border:1px solid #e7ecf3;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:15px;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:9px;
+  background:#e9f1ff;
+  color:#1458a6;
+}
+
+.title{
+  font-size:16px;
+  line-height:1.4;
+  font-weight:bold;
+  margin-bottom:9px;
+}
+
+.info{
+  display:grid;
+  gap:6px;
+  color:#536174;
+  font-size:12px;
+}
+
+.info b{
+  color:#26364d;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:13px;
+}
+
+.actions a{
+  flex:1;
+  text-align:center;
+  text-decoration:none;
+  padding:10px 7px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.details{
+  background:#edf3fb;
+  color:#1458a6;
+}
+
+.apply{
+  background:#1565c0;
+  color:white;
+}
+
+.empty{
+  background:white;
+  padding:35px 20px;
+  border-radius:14px;
+  text-align:center;
+  color:#667085;
+}
+
+footer{
+  text-align:center;
+  padding:22px 10px;
+  background:#10233f;
+  color:white;
+  font-size:12px;
+}
+
+@media(max-width:600px){
+  .filters{
+    grid-template-columns:1fr;
+  }
+
+  nav{
+    top:113px;
+  }
+
+  .brand h1{
+    font-size:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <h1>💼 JOBMITRA INDIA 🇮🇳</h1>
+    <span class="live">● LIVE</span>
+  </div>
+
+  <div class="subtitle">
+    Government Jobs & Updates 🇮🇳
+  </div>
+
+  <div class="subtitle">
+    Jobs • Notifications • Results • Admit Cards
+  </div>
+
+  <div class="searchBox">
+    <input
+      id="search"
+      type="search"
+      placeholder="Search job, department, post..."
+      autocomplete="off">
+    <button class="searchBtn" onclick="applyFilters()">🔍</button>
+  </div>
+</header>
+
+<nav>
+  <button class="active" data-type="ALL" onclick="setType('ALL',this)">
+    🏠 All
+  </button>
+
+  <button data-type="JOB" onclick="setType('JOB',this)">
+    💼 Jobs
+  </button>
+
+  <button data-type="NOTIFICATION" onclick="setType('NOTIFICATION',this)">
+    📢 Notifications
+  </button>
+
+  <button data-type="RESULT" onclick="setType('RESULT',this)">
+    📝 Results
+  </button>
+
+  <button data-type="ADMIT CARD" onclick="setType('ADMIT CARD',this)">
+    🎫 Admit Cards
+  </button>
+</nav>
+
+<div class="filters">
+
+  <select id="qualification" onchange="applyFilters()">
+    <option value="">All Qualifications</option>
+  </select>
+
+  <select id="state" onchange="applyFilters()">
+    <option value="">All States</option>
+  </select>
+
+  <select id="source" onchange="applyFilters()">
+    <option value="">All Sources</option>
+  </select>
+
+</div>
+
+<div class="status">
+  Latest Government Updates
+  <span id="count">Loading...</span>
+  🟢
+</div>
+
+<main id="jobs">
+  <div class="empty">
+    ⏳ Loading government jobs...
+  </div>
+</main>
+
+<footer>
+  <b>JOBMITRA INDIA 🇮🇳</b>
+  <br><br>
+  Government Jobs • Notifications • Admit Cards • Results
+  <br><br>
+  🔄 Automatic Job Updates Every 10 Minutes
+</footer>
+
+<script>
+
+const API = "http://localhost:3000";
+
+let allJobs = [];
+let currentType = "ALL";
+
+function safe(v){
+  return v === undefined || v === null || v === ""
+    ? "See official notification"
+    : String(v);
+}
+
+function normalizeJob(j){
+  return {
+    title: safe(j.title || j.name || j.jobTitle || j.post),
+    organization: safe(
+      j.organization ||
+      j.department ||
+      j.company
+    ),
+    location: safe(
+      j.location ||
+      j.state ||
+      "India"
+    ),
+    qualification: safe(
+      j.qualification ||
+      j.eligibility ||
+      j.education
+    ),
+    vacancies: safe(
+      j.vacancies ||
+      j.posts ||
+      j.totalPosts
+    ),
+    source: safe(
+      j.source ||
+      j.portal ||
+      j.website ||
+      j.organization
+    ),
+    type: safe(
+      j.category ||
+      j.type ||
+      j.jobType ||
+      "JOB"
+    ).toUpperCase(),
+    lastDate: safe(
+      j.lastDate ||
+      j.deadline ||
+      j.applicationLastDate
+    ),
+    description: safe(
+      j.description ||
+      j.summary
+    ),
+    url:
+      j.applyUrl ||
+      j.url ||
+      j.link ||
+      j.officialUrl ||
+      j.sourceUrl ||
+      "#"
+  };
+}
+
+function getType(j){
+
+  const t = safe(
+    j.category || j.type
+  ).toUpperCase();
+
+  if(t.includes("RESULT"))
+    return "RESULT";
+
+  if(t.includes("ADMIT"))
+    return "ADMIT CARD";
+
+  if(
+    t.includes("NOTIFICATION") ||
+    t.includes("NOTICE")
+  )
+    return "NOTIFICATION";
+
+  return "JOB";
+}
+
+function categoryIcon(type){
+
+  if(type === "RESULT")
+    return "📝 RESULT";
+
+  if(type === "ADMIT CARD")
+    return "🎫 ADMIT CARD";
+
+  if(type === "NOTIFICATION")
+    return "📢 NOTIFICATION";
+
+  return "💼 JOB";
+}
+
+async function loadJobs(){
+
+  try{
+
+    const response =
+      await fetch(API + "/api/jobs");
+
+    if(!response.ok)
+      throw new Error("API error");
+
+    const data =
+      await response.json();
+
+    const list =
+      Array.isArray(data)
+        ? data
+        : (
+          data.jobs ||
+          data.data ||
+          data.results ||
+          []
+        );
+
+    allJobs =
+      list.map(normalizeJob);
+
+    buildFilters();
+    applyFilters();
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById("count")
+      .textContent = "0 Updates";
+
+    document.getElementById("jobs").innerHTML = `
+      <div class="empty">
+        ❌ Unable to load jobs.<br><br>
+        Please make sure JOBMITRA backend is running.
+      </div>
+    `;
+  }
+}
+
+function buildFilters(){
+
+  const qualifications =
+    [...new Set(
+      allJobs
+        .map(j => j.qualification)
+        .filter(x =>
+          x &&
+          x !== "See official notification"
+        )
+    )].sort();
+
+  const states =
+    [...new Set(
+      allJobs
+        .map(j => j.location)
+        .filter(Boolean)
+    )].sort();
+
+  const sources =
+    [...new Set(
+      allJobs
+        .map(j => j.source)
+        .filter(Boolean)
+    )].sort();
+
+  fillSelect(
+    "qualification",
+    qualifications,
+    "All Qualifications"
+  );
+
+  fillSelect(
+    "state",
+    states,
+    "All States"
+  );
+
+  fillSelect(
+    "source",
+    sources,
+    "All Sources"
+  );
+}
+
+function fillSelect(id,items,first){
+
+  const select =
+    document.getElementById(id);
+
+  select.innerHTML =
+    `<option value="">${first}</option>`;
+
+  items.forEach(item => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = item;
+    option.textContent = item;
+
+    select.appendChild(option);
+  });
+}
+
+function setType(type,button){
+
+  currentType = type;
+
+  document
+    .querySelectorAll("nav button")
+    .forEach(b =>
+      b.classList.remove("active")
+    );
+
+  button.classList.add("active");
+
+  applyFilters();
+}
+
+function applyFilters(){
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const qualification =
+    document
+      .getElementById("qualification")
+      .value;
+
+  const state =
+    document
+      .getElementById("state")
+      .value;
+
+  const source =
+    document
+      .getElementById("source")
+      .value;
+
+  let filtered =
+    allJobs.filter(j => {
+
+      const type =
+        getType(j);
+
+      const text =
+        (
+          j.title + " " +
+          j.organization + " " +
+          j.location + " " +
+          j.qualification + " " +
+          j.source
+        ).toLowerCase();
+
+      if(
+        currentType !== "ALL" &&
+        type !== currentType
+      )
+        return false;
+
+      if(
+        search &&
+        !text.includes(search)
+      )
+        return false;
+
+      if(
+        qualification &&
+        j.qualification !== qualification
+      )
+        return false;
+
+      if(
+        state &&
+        j.location !== state
+      )
+        return false;
+
+      if(
+        source &&
+        j.source !== source
+      )
+        return false;
+
+      return true;
+    });
+
+  renderJobs(filtered);
+}
+
+function renderJobs(list){
+
+  const container =
+    document.getElementById("jobs");
+
+  document.getElementById("count")
+    .textContent =
+    list.length + " Updates";
+
+  if(!list.length){
+
+    container.innerHTML = `
+      <div class="empty">
+        🔍 No matching jobs found.
+      </div>
+    `;
+
+    return;
+  }
+
+  container.innerHTML =
+    list.map((j,index) => {
+
+      const type =
+        getType(j);
+
+      const icon =
+        categoryIcon(type);
+
+      return `
+        <article class="card">
+
+          <div class="badge">
+            ${icon}
+          </div>
+
+          <div class="title">
+            ${escapeHtml(j.title)}
+          </div>
+
+          <div class="info">
+
+            <div>
+              🏛️ <b>
+              ${escapeHtml(j.organization)}
+              </b>
+            </div>
+
+            <div>
+              📍 ${escapeHtml(j.location)}
+            </div>
+
+            <div>
+              🎓 ${escapeHtml(j.qualification)}
+            </div>
+
+            <div>
+              👥 ${escapeHtml(j.vacancies)}
+            </div>
+
+            <div>
+              🌐 ${escapeHtml(j.source)}
+            </div>
+
+            <div>
+              📅 Last Date:
+              ${escapeHtml(j.lastDate)}
+            </div>
+
+          </div>
+
+          <div class="actions">
+
+            <a
+              class="details"
+              href="${safeUrl(j.url)}"
+              target="_blank"
+              rel="noopener noreferrer">
+              📄 View Details
+            </a>
+
+            <a
+              class="apply"
+              href="${safeUrl(j.url)}"
+              target="_blank"
+              rel="noopener noreferrer">
+              🌐 Official Details
+            </a>
+
+          </div>
+
+        </article>
+      `;
+
+    }).join("");
+}
+
+function escapeHtml(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function safeUrl(url){
+
+  try{
+
+    const u =
+      new URL(url);
+
+    if(
+      u.protocol === "http:" ||
+      u.protocol === "https:"
+    )
+      return escapeHtml(u.href);
+
+  }catch(e){}
+
+  return "#";
+}
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    applyFilters
+  );
+
+loadJobs();
+
+setInterval(
+  loadJobs,
+  10 * 60 * 1000
+);
+
+</script>
+
+</body>
+</html>

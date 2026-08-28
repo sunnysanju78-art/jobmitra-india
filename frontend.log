@@ -1,0 +1,16 @@
+::ffff:127.0.0.1 - - [27/Aug/2026 02:23:20] "GET / HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:23:20] code 404, message File not found
+::ffff:127.0.0.1 - - [27/Aug/2026 02:23:20] "GET /favicon.ico HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:28:21] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:28:22] code 404, message File not found
+::ffff:127.0.0.1 - - [27/Aug/2026 02:28:22] "GET /favicon.ico HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:40:54] "GET / HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:40:55] code 404, message File not found
+::ffff:127.0.0.1 - - [27/Aug/2026 02:40:55] "GET /favicon.ico HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:41:50] "HEAD / HTTP/1.1" 200 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:42:23] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:42:25] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:42:30] "GET / HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:45:43] code 404, message File not found
+::ffff:127.0.0.1 - - [27/Aug/2026 02:45:43] "GET /favicon.ico HTTP/1.1" 404 -
+::ffff:127.0.0.1 - - [27/Aug/2026 02:45:45] "GET / HTTP/1.1" 200 -

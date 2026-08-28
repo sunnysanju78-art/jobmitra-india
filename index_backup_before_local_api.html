@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>JOBMITRA INDIA 🇮🇳</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+header{
+  background:linear-gradient(135deg,#063970,#0b72c9);
+  color:white;
+  padding:22px 16px;
+  text-align:center;
+  box-shadow:0 3px 12px #0003;
+}
+
+.logo{
+  font-size:27px;
+  font-weight:800;
+}
+
+.live{
+  display:inline-block;
+  margin-left:6px;
+  font-size:13px;
+  background:#16a34a;
+  padding:5px 9px;
+  border-radius:20px;
+  vertical-align:middle;
+}
+
+.subtitle{
+  margin-top:8px;
+  font-size:15px;
+  opacity:.95;
+}
+
+.tags{
+  margin-top:7px;
+  font-size:13px;
+  opacity:.85;
+}
+
+.container{
+  width:min(1150px,94%);
+  margin:18px auto;
+}
+
+.searchBox{
+  display:flex;
+  gap:8px;
+  margin-bottom:14px;
+}
+
+.searchBox input{
+  flex:1;
+  padding:14px 15px;
+  border:1px solid #ccd5e2;
+  border-radius:12px;
+  font-size:15px;
+  outline:none;
+  background:white;
+}
+
+.searchBox input:focus{
+  border-color:#0b72c9;
+  box-shadow:0 0 0 3px #0b72c91a;
+}
+
+.searchBtn{
+  border:0;
+  border-radius:12px;
+  padding:0 18px;
+  background:#0b72c9;
+  color:white;
+  font-size:18px;
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:10px;
+}
+
+.nav button{
+  white-space:nowrap;
+  border:1px solid #d4dce7;
+  background:white;
+  padding:10px 14px;
+  border-radius:22px;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.nav button.active{
+  background:#0b72c9;
+  color:white;
+  border-color:#0b72c9;
+}
+
+.filters{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:8px 0 15px;
+}
+
+select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccd5e2;
+  border-radius:10px;
+  background:white;
+  font-size:14px;
+}
+
+.status{
+  background:white;
+  border-radius:12px;
+  padding:13px;
+  margin-bottom:14px;
+  border:1px solid #e0e6ef;
+  font-size:14px;
+}
+
+.jobs{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:17px;
+  border:1px solid #e1e6ee;
+  box-shadow:0 3px 12px #0000000b;
+}
+
+.badge{
+  display:inline-block;
+  background:#e9f4ff;
+  color:#075b9f;
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:9px;
+}
+
+.title{
+  font-size:17px;
+  font-weight:800;
+  line-height:1.4;
+  margin-bottom:12px;
+}
+
+.info{
+  display:grid;
+  gap:7px;
+  font-size:13px;
+  color:#4b5563;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
+
+.actions button,
+.actions a{
+  flex:1;
+  text-align:center;
+  padding:11px 8px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.detailsBtn{
+  border:1px solid #0b72c9;
+  background:white;
+  color:#0b72c9;
+}
+
+.apply{
+  background:#0b72c9;
+  color:white;
+  border:0;
+}
+
+.empty{
+  grid-column:1/-1;
+  background:white;
+  padding:35px 20px;
+  text-align:center;
+  border-radius:15px;
+  border:1px solid #e1e6ee;
+  color:#667085;
+}
+
+.footer{
+  text-align:center;
+  padding:30px 15px;
+  color:#667085;
+  font-size:13px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  z-index:999;
+  inset:0;
+  background:#0008;
+  overflow:auto;
+  padding:25px 12px;
+}
+
+.modalBox{
+  background:white;
+  max-width:700px;
+  margin:30px auto;
+  border-radius:16px;
+  padding:20px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:15px;
+  top:10px;
+  border:0;
+  background:#eee;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  font-size:20px;
+}
+
+.modalTitle{
+  font-size:20px;
+  font-weight:800;
+  padding-right:40px;
+  margin-bottom:18px;
+  line-height:1.4;
+}
+
+.detailRow{
+  border-bottom:1px solid #edf0f4;
+  padding:10px 0;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.detailRow b{
+  display:block;
+  color:#0b72c9;
+  font-size:11px;
+  margin-bottom:3px;
+}
+
+.modalApply{
+  display:block;
+  margin-top:18px;
+  text-align:center;
+  background:#0b72c9;
+  color:white;
+  text-decoration:none;
+  padding:13px;
+  border-radius:10px;
+  font-weight:700;
+}
+
+@media(max-width:700px){
+  .jobs{
+    grid-template-columns:1fr;
+  }
+
+  .filters{
+    grid-template-columns:1fr;
+  }
+
+  .logo{
+    font-size:23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    💼 JOBMITRA INDIA 🇮🇳
+    <span class="live">● LIVE</span>
+  </div>
+
+  <div class="subtitle">
+    Government Jobs & Updates 🇮🇳
+  </div>
+
+  <div class="tags">
+    Jobs • Notifications • Results • Admit Cards
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="searchBox">
+    <input
+      id="search"
+      type="text"
+      placeholder="Search job, department, post..."
+    >
+    <button class="searchBtn">🔍</button>
+  </div>
+
+  <div class="nav">
+
+    <button
+      class="active"
+      onclick="setCategory('ALL',this)">
+      🏠 All
+    </button>
+
+    <button
+      onclick="setCategory('JOB',this)">
+      💼 Jobs
+    </button>
+
+    <button
+      onclick="setCategory('NOTIFICATION',this)">
+      📢 Notifications
+    </button>
+
+    <button
+      onclick="setCategory('RESULT',this)">
+      📝 Results
+    </button>
+
+    <button
+      onclick="setCategory('ADMIT',this)">
+      🎫 Admit Cards
+    </button>
+
+  </div>
+
+  <div class="filters">
+
+    <select id="qualification">
+      <option value="">All Qualifications</option>
+    </select>
+
+    <select id="state">
+      <option value="">All States</option>
+    </select>
+
+    <select id="source">
+      <option value="">All Sources</option>
+    </select>
+
+  </div>
+
+  <div id="status" class="status">
+    🔄 Connecting to JOBMITRA backend...
+  </div>
+
+  <div id="jobs" class="jobs"></div>
+
+</div>
+
+<div class="footer">
+  <b>JOBMITRA INDIA 🇮🇳</b><br><br>
+  Government Jobs • Notifications • Admit Cards • Results<br><br>
+  🔄 Automatic Job Updates Every 10 Minutes
+</div>
+
+<div id="modal" class="modal">
+
+  <div class="modalBox">
+
+    <button
+      class="close"
+      onclick="closeModal()">
+      ×
+    </button>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+<script>
+
+const API = "http://127.0.0.1:3000/api/jobs";
+
+let allJobs = [];
+let category = "ALL";
+
+
+/* ================================
+   NORMALIZE JOB
+================================ */
+
+function normalizeJob(j){
+
+  const title =
+    j.title ||
+    j.headline ||
+    j.post ||
+    "Government Opportunity";
+
+  const organization =
+    j.organization ||
+    j.company ||
+    j.department ||
+    "Government Department";
+
+  let type =
+    j.category ||
+    j.type ||
+    j.jobType ||
+    "";
+
+  const text =
+    JSON.stringify(j).toLowerCase();
+
+  if(
+    /result|final result|answer key|allocation/.test(text)
+  ){
+    type = "RESULT";
+  }
+  else if(
+    /admit card|admission certificate|hall ticket/.test(text)
+  ){
+    type = "ADMIT";
+  }
+  else if(
+    /notification|notice|corrigendum|addendum/.test(text)
+  ){
+    type = "NOTIFICATION";
+  }
+  else if(
+    /recruitment|vacanc|online application|apply/.test(text)
+  ){
+    type = "JOB";
+  }
+  else{
+    type = "JOB";
+  }
+
+  return {
+
+    ...j,
+
+    title:title,
+
+    organization:organization,
+
+    department:
+      j.department ||
+      organization ||
+      "Government",
+
+    location:
+      j.location ||
+      "India",
+
+    qualification:
+      j.qualification ||
+      "See official notification",
+
+    vacancies:
+      j.vacancies ||
+      "See official notification",
+
+    salary:
+      j.salary ||
+      "See official notification",
+
+    lastDate:
+      j.lastDate ||
+      j.endDate ||
+      "See official notification",
+
+    source:
+      j.source ||
+      "Government",
+
+    category:type,
+
+    description:
+      j.description ||
+      j.content ||
+      "See official notification",
+
+    url:
+      j.url ||
+      j.applyUrl ||
+      j.sourceUrl ||
+      j.redirectUrl ||
+      "#"
+
+  };
+
+}
+
+
+/* ================================
+   CATEGORY
+================================ */
+
+function setCategory(value,button){
+
+  category = value;
+
+  document
+    .querySelectorAll(".nav button")
+    .forEach(b => b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  render();
+}
+
+
+/* ================================
+   GET TYPE
+================================ */
+
+function getType(j){
+
+  return j.category ||
+         j.type ||
+         "JOB";
+
+}
+
+
+/* ================================
+   ICON
+================================ */
+
+function icon(type){
+
+  type = String(type).toUpperCase();
+
+  if(type === "RESULT")
+    return "📝";
+
+  if(type === "ADMIT")
+    return "🎫";
+
+  if(type === "NOTIFICATION")
+    return "📢";
+
+  return "💼";
+
+}
+
+
+/* ================================
+   ESCAPE HTML
+================================ */
+
+function esc(v){
+
+  return String(v ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ================================
+   FILL FILTERS
+================================ */
+
+function fillFilters(){
+
+  const q =
+    document.getElementById("qualification");
+
+  const s =
+    document.getElementById("state");
+
+  const so =
+    document.getElementById("source");
+
+  const qualifications =
+    [...new Set(
+      allJobs
+        .map(j => j.qualification)
+        .filter(v =>
+          v &&
+          v !== "See official notification"
+        )
+    )].sort();
+
+  const states =
+    [...new Set(
+      allJobs
+        .map(j => j.location)
+        .filter(v => v)
+    )].sort();
+
+  const sources =
+    [...new Set(
+      allJobs
+        .map(j => j.source)
+        .filter(v => v)
+    )].sort();
+
+
+  q.innerHTML =
+    '<option value="">All Qualifications</option>';
+
+  s.innerHTML =
+    '<option value="">All States</option>';
+
+  so.innerHTML =
+    '<option value="">All Sources</option>';
+
+
+  qualifications.forEach(v => {
+
+    q.innerHTML +=
+      `<option value="${esc(v)}">${esc(v)}</option>`;
+
+  });
+
+
+  states.forEach(v => {
+
+    s.innerHTML +=
+      `<option value="${esc(v)}">${esc(v)}</option>`;
+
+  });
+
+
+  sources.forEach(v => {
+
+    so.innerHTML +=
+      `<option value="${esc(v)}">${esc(v)}</option>`;
+
+  });
+
+}
+
+
+/* ================================
+   RENDER
+================================ */
+
+function render(){
+
+  const box =
+    document.getElementById("jobs");
+
+  const search =
+    document.getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const qualification =
+    document.getElementById("qualification")
+      .value
+      .toLowerCase();
+
+  const state =
+    document.getElementById("state")
+      .value
+      .toLowerCase();
+
+  const source =
+    document.getElementById("source")
+      .value
+      .toLowerCase();
+
+
+  let filtered =
+    allJobs.filter(j => {
+
+      const type =
+        getType(j).toUpperCase();
+
+      if(
+        category !== "ALL" &&
+        type !== category
+      ){
+        return false;
+      }
+
+
+      if(search){
+
+        const text =
+          JSON.stringify(j)
+            .toLowerCase();
+
+        if(!text.includes(search))
+          return false;
+
+      }
+
+
+      if(
+        qualification &&
+        String(j.qualification)
+          .toLowerCase() !== qualification
+      ){
+        return false;
+      }
+
+
+      if(
+        state &&
+        String(j.location)
+          .toLowerCase() !== state
+      ){
+        return false;
+      }
+
+
+      if(
+        source &&
+        String(j.source)
+          .toLowerCase() !== source
+      ){
+        return false;
+      }
+
+
+      return true;
+
+    });
+
+
+  document.getElementById("status").innerHTML =
+    `🟢 JOBMITRA INDIA —
+     <b>${filtered.length}</b> Updates`;
+
+
+  if(!filtered.length){
+
+    box.innerHTML = `
+      <div class="empty">
+        😕 <b>No jobs found.</b><br><br>
+        Try another search or filter.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    filtered.map((j,i) => {
+
+      const type =
+        getType(j);
+
+
+      return `
+
+      <article class="card">
+
+        <div class="badge">
+          ${icon(type)}
+          ${esc(type)}
+        </div>
+
+        <div class="title">
+          ${esc(j.title)}
+        </div>
+
+        <div class="info">
+
+          <div>
+            🏛️ <b>
+            ${esc(j.organization)}
+            </b>
+          </div>
+
+          <div>
+            📍 ${esc(j.location)}
+          </div>
+
+          <div>
+            🎓 ${esc(j.qualification)}
+          </div>
+
+          <div>
+            👥 ${esc(j.vacancies)}
+          </div>
+
+          <div>
+            🌐 ${esc(j.source)}
+          </div>
+
+          <div>
+            📅 Last Date:
+            ${esc(j.lastDate)}
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button
+            class="detailsBtn"
+            onclick="showDetails(${i})">
+            📄 View Details
+          </button>
+
+          <a
+            class="apply"
+            href="${esc(j.url)}"
+            target="_blank"
+            rel="noopener">
+            🌐 Official Details
+          </a>
+
+        </div>
+
+      </article>
+
+      `;
+
+    }).join("");
+
+
+  window.currentFiltered =
+    filtered;
+
+}
+
+
+/* ================================
+   DETAILS
+================================ */
+
+function showDetails(index){
+
+  const data =
+    window.currentFiltered || [];
+
+  const j =
+    data[index];
+
+  if(!j)
+    return;
+
+
+  document.getElementById("modalContent")
+    .innerHTML = `
+
+      <div class="modalTitle">
+        ${esc(j.title)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>ORGANIZATION</b>
+        ${esc(j.organization)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>DEPARTMENT</b>
+        ${esc(j.department)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>LOCATION</b>
+        ${esc(j.location)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>QUALIFICATION</b>
+        ${esc(j.qualification)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>VACANCIES</b>
+        ${esc(j.vacancies)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>SALARY</b>
+        ${esc(j.salary)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>CATEGORY</b>
+        ${esc(getType(j))}
+      </div>
+
+
+      <div class="detailRow">
+        <b>SOURCE</b>
+        ${esc(j.source)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>LAST DATE</b>
+        ${esc(j.lastDate)}
+      </div>
+
+
+      <div class="detailRow">
+        <b>DESCRIPTION</b>
+        ${esc(j.description)}
+      </div>
+
+
+      <a
+        class="modalApply"
+        href="${esc(j.url)}"
+        target="_blank"
+        rel="noopener">
+        🌐 OPEN OFFICIAL DETAILS
+      </a>
+
+    `;
+
+
+  document.getElementById("modal")
+    .style.display = "block";
+
+}
+
+
+/* ================================
+   CLOSE MODAL
+================================ */
+
+function closeModal(){
+
+  document.getElementById("modal")
+    .style.display = "none";
+
+}
+
+
+/* ================================
+   LOAD JOBS
+================================ */
+
+async function loadJobs(){
+
+  const status =
+    document.getElementById("status");
+
+
+  try{
+
+    status.innerHTML =
+      "🔄 Connecting to JOBMITRA backend...";
+
+
+    const response =
+      await fetch(
+        API,
+        {
+          cache:"no-store"
+        }
+      );
+
+
+    if(!response.ok)
+      throw new Error(
+        "HTTP " + response.status
+      );
+
+
+    const data =
+      await response.json();
+
+
+    /*
+      Backend returns:
+
+      {
+        success:true,
+        count:605,
+        jobs:[...]
+      }
+
+      But this also supports
+      a direct array.
+    */
+
+    const rawJobs =
+      Array.isArray(data)
+        ? data
+        : (
+            Array.isArray(data.jobs)
+              ? data.jobs
+              : []
+          );
+
+
+    if(!rawJobs.length)
+      throw new Error(
+        "No jobs received"
+      );
+
+
+    allJobs =
+      rawJobs.map(normalizeJob);
+
+
+    fillFilters();
+
+    render();
+
+
+  }catch(error){
+
+    console.error(
+      "JOBMITRA ERROR:",
+      error
+    );
+
+
+    status.innerHTML =
+      "❌ Unable to load jobs.";
+
+
+    document.getElementById("jobs")
+      .innerHTML = `
+
+        <div class="empty">
+
+          ❌ <b>
+          Backend connection failed.
+          </b>
+
+          <br><br>
+
+          Please make sure
+          JOBMITRA backend is running.
+
+          <br><br>
+
+          <small>
+          API:
+          http://127.0.0.1:3000/api/jobs
+          </small>
+
+        </div>
+
+      `;
+
+  }
+
+}
+
+
+/* ================================
+   EVENTS
+================================ */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    render
+  );
+
+
+document
+  .getElementById("qualification")
+  .addEventListener(
+    "change",
+    render
+  );
+
+
+document
+  .getElementById("state")
+  .addEventListener(
+    "change",
+    render
+  );
+
+
+document
+  .getElementById("source")
+  .addEventListener(
+    "change",
+    render
+  );
+
+
+window.addEventListener(
+  "click",
+  function(e){
+
+    if(
+      e.target ===
+      document.getElementById("modal")
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* ================================
+   START
+================================ */
+
+loadJobs();
+
+
+/* Refresh every 10 minutes */
+
+setInterval(
+  loadJobs,
+  600000
+);
+
+</script>
+
+</body>
+</html>

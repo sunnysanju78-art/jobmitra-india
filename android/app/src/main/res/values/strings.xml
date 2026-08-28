@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">JOBMITRA INDIA</string>
+    <string name="title_activity_main">JOBMITRA INDIA</string>
+    <string name="package_name">com.jobmitra.india</string>
+    <string name="custom_url_scheme">com.jobmitra.india</string>
+</resources>

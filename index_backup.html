@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>JOBMITRA INDIA 🇮🇳</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6f9;
+  color:#172033;
+}
+header{
+  background:#fff;
+  border-bottom:1px solid #ddd;
+  padding:14px 15px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+.header-inner{max-width:1100px;margin:auto}
+.brand{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.logo{
+  font-size:22px;
+  font-weight:800;
+}
+.live{
+  color:#168a3a;
+  font-size:12px;
+  font-weight:700;
+}
+.subtitle{
+  margin-top:5px;
+  color:#657084;
+  font-size:13px;
+}
+.search{
+  max-width:1100px;
+  margin:15px auto 0;
+  display:flex;
+  gap:8px;
+}
+.search input{
+  flex:1;
+  padding:13px;
+  border:1px solid #ccd2dc;
+  border-radius:10px;
+  font-size:15px;
+  outline:none;
+}
+.search button{
+  border:0;
+  border-radius:10px;
+  padding:0 18px;
+  background:#172033;
+  color:#fff;
+  font-size:16px;
+}
+.nav{
+  max-width:1100px;
+  margin:12px auto 0;
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+}
+.nav button{
+  white-space:nowrap;
+  border:1px solid #d7dce4;
+  background:#fff;
+  padding:9px 13px;
+  border-radius:20px;
+  cursor:pointer;
+}
+.nav button.active{
+  background:#172033;
+  color:white;
+}
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:18px 15px 40px;
+}
+.filters{
+  background:#fff;
+  border:1px solid #e0e4ea;
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:18px;
+}
+.filters-title{
+  font-weight:700;
+  margin-bottom:10px;
+}
+.filter-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+select{
+  width:100%;
+  padding:11px;
+  border:1px solid #ccd2dc;
+  border-radius:9px;
+  background:#fff;
+}
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+.count{
+  font-size:13px;
+  color:#168a3a;
+  font-weight:700;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.card{
+  background:#fff;
+  border:1px solid #e0e4ea;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 2px 7px rgba(0,0,0,.04);
+}
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:15px;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:10px;
+  background:#eef2f7;
+}
+.title{
+  font-size:17px;
+  line-height:1.35;
+  font-weight:750;
+}
+.meta{
+  margin-top:10px;
+  color:#566174;
+  font-size:13px;
+  line-height:1.8;
+}
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
+.details{
+  flex:1;
+  border:0;
+  border-radius:9px;
+  padding:10px;
+  background:#172033;
+  color:#fff;
+  cursor:pointer;
+}
+.apply{
+  flex:1;
+  border:1px solid #168a3a;
+  border-radius:9px;
+  padding:10px;
+  background:#fff;
+  color:#168a3a;
+  text-align:center;
+  text-decoration:none;
+  font-weight:700;
+}
+.empty{
+  background:#fff;
+  padding:35px 15px;
+  text-align:center;
+  border-radius:14px;
+  border:1px solid #e0e4ea;
+}
+footer{
+  text-align:center;
+  padding:25px 15px;
+  color:#687386;
+  font-size:13px;
+}
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:100;
+}
+.modal.show{display:flex}
+.modal-box{
+  width:min(650px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+}
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.close{
+  border:0;
+  background:#eee;
+  border-radius:50%;
+  width:34px;
+  height:34px;
+  font-size:20px;
+}
+.modal h2{
+  font-size:20px;
+  line-height:1.4;
+}
+.detail-line{
+  padding:11px 0;
+  border-bottom:1px solid #eee;
+  font-size:14px;
+}
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+.modal-actions a{
+  flex:1;
+  text-align:center;
+  padding:12px;
+  border-radius:9px;
+  text-decoration:none;
+  font-weight:700;
+}
+.official{
+  background:#168a3a;
+  color:#fff;
+}
+.close-btn{
+  background:#eee;
+  color:#172033;
+}
+.loading{
+  padding:35px;
+  text-align:center;
+}
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr}
+  .filter-row{grid-template-columns:1fr}
+  .logo{font-size:19px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo">💼 JOBMITRA INDIA 🇮🇳</div>
+      <div class="live">● LIVE</div>
+    </div>
+
+    <div class="subtitle">
+      Government Jobs & Updates 🇮🇳<br>
+      Jobs • Notifications • Results • Admit Cards
+    </div>
+
+    <div class="search">
+      <input id="searchInput" type="search"
+        placeholder="Search job, department, post...">
+      <button onclick="applyFilters()">🔍</button>
+    </div>
+
+    <div class="nav">
+      <button class="active" data-tab="ALL">🏠 All</button>
+      <button data-tab="JOB">💼 Jobs</button>
+      <button data-tab="NOTIFICATION">📢 Notifications</button>
+      <button data-tab="RESULT">📝 Results</button>
+      <button data-tab="ADMIT CARD">🎫 Admit Cards</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="filters">
+    <div class="filters-title">🔎 Smart Filters</div>
+
+    <div class="filter-row">
+      <select id="qualification">
+        <option value="">All Qualifications</option>
+        <option value="10th">10th</option>
+        <option value="12th">12th</option>
+        <option value="graduate">Graduate</option>
+        <option value="degree">Degree</option>
+        <option value="diploma">Diploma</option>
+        <option value="engineering">Engineering</option>
+        <option value="post graduate">Post Graduate</option>
+      </select>
+
+      <select id="state">
+        <option value="">All States</option>
+        <option>Andhra Pradesh</option>
+        <option>Telangana</option>
+        <option>Karnataka</option>
+        <option>Tamil Nadu</option>
+        <option>Maharashtra</option>
+        <option>Delhi</option>
+        <option>Uttar Pradesh</option>
+        <option>Bihar</option>
+        <option>West Bengal</option>
+        <option>India</option>
+      </select>
+
+      <select id="source">
+        <option value="">All Sources</option>
+        <option value="UPSC">UPSC</option>
+        <option value="SSC">SSC</option>
+        <option value="RRB">Railway</option>
+        <option value="IBPS">Banking</option>
+        <option value="DEFENCE">Defence</option>
+      </select>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Latest Government Updates</h2>
+      <span class="count" id="count">Loading...</span>
+    </div>
+
+    <div id="jobs" class="grid">
+      <div class="loading">⏳ Loading government updates...</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>JOBMITRA INDIA 🇮🇳</strong><br>
+  Government Jobs • Notifications • Admit Cards • Results<br><br>
+  🔄 Automatic Job Updates Every 10 Minutes
+</footer>
+
+<div id="modal" class="modal" onclick="outsideClose(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="modalTitle"></h2>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <div id="modalBody"></div>
+
+    <div class="modal-actions">
+      <a id="officialLink" class="official" href="#" target="_blank" rel="noopener">
+        🌐 Official Website
+      </a>
+      <a href="#" class="close-btn" onclick="closeModal();return false;">
+        Close
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_CANDIDATES = [
+  "http://localhost:3000/api/jobs",
+  "http://localhost:3000/jobs",
+  "http://localhost:3000/api/government-jobs",
+  "http://localhost:3000/api/updates"
+];
+
+let allJobs = [];
+let activeTab = "ALL";
+
+const jobsBox = document.getElementById("jobs");
+const countBox = document.getElementById("count");
+
+function safe(v){
+  return v === undefined || v === null || v === "" ? "See official notification" : String(v);
+}
+
+function normalizeJob(j){
+  return {
+    title: j.title || j.name || j.jobTitle || j.post || j.position || "Government Update",
+    organization: j.organization || j.department || j.company || j.employer || "Government Department",
+    location: j.location || j.state || "India",
+    qualification: j.qualification || j.eligibility || j.education || "",
+    vacancies: j.vacancies || j.posts || j.totalPosts || "",
+    source: j.source || j.portal || j.website || j.organization || "",
+    type: (j.type || j.category || j.jobType || "JOB").toString().toUpperCase(),
+    lastDate: j.lastDate || j.deadline || j.applicationLastDate || "",
+    description: j.description || j.summary || "",
+    url: j.url || j.link || j.applyUrl || j.officialUrl || j.notificationUrl || ""
+  };
+}
+
+async function loadJobs(){
+
+  let data = null;
+
+  for(const url of API_CANDIDATES){
+    try{
+      const res = await fetch(url);
+
+      if(!res.ok) continue;
+
+      const json = await res.json();
+
+      if(Array.isArray(json)){
+        data = json;
+      }else if(Array.isArray(json.jobs)){
+        data = json.jobs;
+      }else if(Array.isArray(json.data)){
+        data = json.data;
+      }else if(Array.isArray(json.updates)){
+        data = json.updates;
+      }
+
+      if(data) break;
+
+    }catch(e){}
+  }
+
+  if(!data){
+    jobsBox.innerHTML = `
+      <div class="empty">
+        <h3>⚠️ Government data unavailable</h3>
+        <p style="margin-top:8px">
+          Backend is not reachable right now.<br>
+          Please start the JOBMITRA backend.
+        </p>
+      </div>`;
+    countBox.textContent = "Offline";
+    return;
+  }
+
+  allJobs = data.map(normalizeJob);
+  applyFilters();
+}
+
+function getType(j){
+  const t = j.type.toUpperCase();
+
+  if(t.includes("RESULT")) return "RESULT";
+  if(t.includes("ADMIT")) return "ADMIT CARD";
+  if(t.includes("NOTIFICATION") || t.includes("NOTICE"))
+    return "NOTIFICATION";
+
+  return "JOB";
+}
+
+function categoryIcon(type){
+  if(type === "RESULT") return "📝";
+  if(type === "ADMIT CARD") return "🎫";
+  if(type === "NOTIFICATION") return "📢";
+  return "💼";
+}
+
+function officialUrl(j){
+
+  let url = j.url;
+
+  if(!url) return "";
+
+  try{
+    const parsed = new URL(url);
+
+    if(parsed.protocol !== "http:" &&
+       parsed.protocol !== "https:"){
+      return "";
+    }
+
+    return parsed.href;
+
+  }catch(e){
+    return "";
+  }
+}
+
+function render(list){
+
+  countBox.textContent = `${list.length} Updates 🟢`;
+
+  if(!list.length){
+    jobsBox.innerHTML = `
+      <div class="empty">
+        <h3>🔍 No updates found</h3>
+        <p style="margin-top:8px">
+          Try another search or filter.
+        </p>
+      </div>`;
+    return;
+  }
+
+  jobsBox.innerHTML = list.map((j,i)=>{
+
+    const type = getType(j);
+    const url = officialUrl(j);
+
+    return `
+      <article class="card">
+
+        <span class="badge">
+          ${categoryIcon(type)} ${type}
+        </span>
+
+        <div class="title">
+          ${escapeHtml(j.title)}
+        </div>
+
+        <div class="meta">
+          🏛️ ${escapeHtml(safe(j.organization))}<br>
+          📍 ${escapeHtml(safe(j.location))}<br>
+          🎓 ${escapeHtml(safe(j.qualification))}<br>
+          👥 ${escapeHtml(safe(j.vacancies))}<br>
+          🌐 ${escapeHtml(safe(j.source))}<br>
+          📅 Last Date: ${escapeHtml(safe(j.lastDate))}
+        </div>
+
+        <div class="actions">
+          <button class="details" onclick="showDetails(${i})">
+            📄 View Details
+          </button>
+
+          ${
+            url
+            ? `<a class="apply"
+                 href="${escapeAttr(url)}"
+                 target="_blank"
+                 rel="noopener">
+                 🔗 Official Link
+               </a>`
+            : `<button class="apply"
+                 onclick="showDetails(${i})">
+                 🌐 Official Details
+               </button>`
+          }
+        </div>
+
+      </article>
+    `;
+  }).join("");
+
+  window.filteredJobs = list;
+}
+
+function applyFilters(){
+
+  const q = document.getElementById("searchInput")
+    .value.toLowerCase().trim();
+
+  const qualification = document.getElementById("qualification")
+    .value.toLowerCase();
+
+  const state = document.getElementById("state")
+    .value.toLowerCase();
+
+  const source = document.getElementById("source")
+    .value.toLowerCase();
+
+  let list = allJobs.filter(j=>{
+
+    const type = getType(j);
+
+    if(activeTab !== "ALL" && type !== activeTab)
+      return false;
+
+    const text = [
+      j.title,
+      j.organization,
+      j.location,
+      j.qualification,
+      j.vacancies,
+      j.source,
+      j.type,
+      j.description
+    ].join(" ").toLowerCase();
+
+    if(q && !text.includes(q))
+      return false;
+
+    if(qualification && !text.includes(qualification))
+      return false;
+
+    if(state && !text.includes(state))
+      return false;
+
+    if(source && !text.includes(source))
+      return false;
+
+    return true;
+  });
+
+  render(list);
+}
+
+function showDetails(index){
+
+  const j = window.filteredJobs[index];
+
+  if(!j) return;
+
+  document.getElementById("modalTitle").textContent = j.title;
+
+  document.getElementById("modalBody").innerHTML = `
+    <div class="detail-line"><strong>🏛️ Department:</strong><br>${escapeHtml(safe(j.organization))}</div>
+    <div class="detail-line"><strong>📍 Location:</strong><br>${escapeHtml(safe(j.location))}</div>
+    <div class="detail-line"><strong>🎓 Qualification:</strong><br>${escapeHtml(safe(j.qualification))}</div>
+    <div class="detail-line"><strong>👥 Vacancies:</strong><br>${escapeHtml(safe(j.vacancies))}</div>
+    <div class="detail-line"><strong>🌐 Source:</strong><br>${escapeHtml(safe(j.source))}</div>
+    <div class="detail-line"><strong>📅 Last Date:</strong><br>${escapeHtml(safe(j.lastDate))}</div>
+    <div class="detail-line"><strong>📝 Details:</strong><br>${escapeHtml(safe(j.description))}</div>
+  `;
+
+  const link = officialUrl(j);
+  const official = document.getElementById("officialLink");
+
+  if(link){
+    official.href = link;
+    official.style.display = "block";
+  }else{
+    official.href = "#";
+    official.style.display = "none";
+  }
+
+  document.getElementById("modal").classList.add("show");
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+}
+
+function outsideClose(e){
+  if(e.target.id === "modal"){
+    closeModal();
+  }
+}
+
+function escapeHtml(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function escapeAttr(value){
+  return escapeHtml(value);
+}
+
+document.querySelectorAll(".nav button").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+
+    document.querySelectorAll(".nav button")
+      .forEach(b=>b.classList.remove("active"));
+
+    btn.classList.add("active");
+
+    activeTab = btn.dataset.tab;
+
+    applyFilters();
+  });
+});
+
+document.getElementById("searchInput")
+  .addEventListener("input", applyFilters);
+
+document.getElementById("qualification")
+  .addEventListener("change", applyFilters);
+
+document.getElementById("state")
+  .addEventListener("change", applyFilters);
+
+document.getElementById("source")
+  .addEventListener("change", applyFilters);
+
+loadJobs();
+
+setInterval(loadJobs, 10 * 60 * 1000);
+</script>
+
+</body>
+</html>

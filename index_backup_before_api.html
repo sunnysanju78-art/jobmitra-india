@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobMitra India</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f5f7fb;
+  color:#172033;
+}
+
+header{
+  background:linear-gradient(135deg,#183b8c,#2563eb);
+  color:white;
+  padding:22px 18px 28px;
+  border-radius:0 0 25px 25px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:28px;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:800;
+}
+
+.bell{
+  background:#ffffff22;
+  padding:10px;
+  border-radius:50%;
+  font-size:20px;
+}
+
+.hero h1{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  opacity:.9;
+  font-size:14px;
+}
+
+.search{
+  margin-top:20px;
+  background:white;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  padding:5px 8px;
+}
+
+.search input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:14px 10px;
+  font-size:15px;
+}
+
+.search button{
+  border:0;
+  background:#2563eb;
+  color:white;
+  padding:12px 15px;
+  border-radius:11px;
+  font-size:18px;
+}
+
+.container{
+  padding:20px 16px 40px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.section-head h2{
+  font-size:19px;
+}
+
+.section-head span{
+  color:#2563eb;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.categories{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:8px;
+}
+
+.categories::-webkit-scrollbar{
+  display:none;
+}
+
+.cat{
+  min-width:105px;
+  background:white;
+  border-radius:16px;
+  padding:15px 10px;
+  text-align:center;
+  box-shadow:0 3px 12px #0000000b;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.cat.active{
+  border-color:#2563eb;
+  background:#eef4ff;
+}
+
+.cat .icon{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.cat div:last-child{
+  font-size:13px;
+  font-weight:bold;
+}
+
+.status{
+  margin:18px 0 12px;
+  background:white;
+  border-radius:13px;
+  padding:13px;
+  font-size:13px;
+  color:#667085;
+  display:flex;
+  justify-content:space-between;
+}
+
+.jobs{
+  display:grid;
+  gap:14px;
+}
+
+.job{
+  background:white;
+  border-radius:17px;
+  padding:17px;
+  box-shadow:0 4px 16px #0000000b;
+  cursor:pointer;
+}
+
+.job-top{
+  display:flex;
+  gap:12px;
+}
+
+.job-icon{
+  width:48px;
+  height:48px;
+  border-radius:13px;
+  background:#eef3ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
+
+.job-info{
+  flex:1;
+}
+
+.job-title{
+  font-weight:800;
+  font-size:16px;
+  margin-bottom:5px;
+}
+
+.company{
+  color:#667085;
+  font-size:13px;
+}
+
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:13px;
+}
+
+.tag{
+  background:#f1f5f9;
+  padding:6px 9px;
+  border-radius:8px;
+  font-size:11px;
+  color:#475467;
+}
+
+.apply{
+  margin-top:14px;
+  width:100%;
+  border:0;
+  background:#2563eb;
+  color:white;
+  padding:12px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.empty{
+  text-align:center;
+  padding:40px 15px;
+  color:#667085;
+}
+
+.loader{
+  text-align:center;
+  padding:30px;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#00000088;
+  display:none;
+  align-items:flex-end;
+  z-index:10;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-height:85vh;
+  overflow:auto;
+  background:white;
+  border-radius:25px 25px 0 0;
+  padding:22px;
+}
+
+.close{
+  float:right;
+  border:0;
+  background:#eef2f7;
+  border-radius:50%;
+  width:35px;
+  height:35px;
+  font-size:18px;
+}
+
+.detail-icon{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+.detail-title{
+  font-size:23px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.detail-company{
+  color:#667085;
+  margin-bottom:18px;
+}
+
+.detail-section{
+  margin-top:20px;
+}
+
+.detail-section h3{
+  margin-bottom:8px;
+}
+
+.detail-section p{
+  color:#475467;
+  line-height:1.6;
+  font-size:14px;
+}
+
+.detail-apply{
+  width:100%;
+  margin-top:22px;
+  padding:15px;
+  background:#16a34a;
+  color:white;
+  border:0;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#98a2b3;
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="top">
+    <div class="logo">💼 JOBMITRA INDIA</div>
+    <div class="bell">🔔</div>
+  </div>
+
+  <div class="hero">
+    <h1>Find Your Dream Job 🚀</h1>
+    <p>Search jobs across India in one place.</p>
+  </div>
+
+  <div class="search">
+    <input id="searchInput"
+           type="text"
+           placeholder="Search job, company or skill..."
+           oninput="searchJobs()">
+
+    <button onclick="searchJobs()">🔍</button>
+  </div>
+
+</header>
+
+<main class="container">
+
+  <div class="section-head">
+    <h2>Job Categories</h2>
+    <span onclick="selectCategory('All')">View All</span>
+  </div>
+
+  <div class="categories">
+
+    <div class="cat active" onclick="selectCategory('All')">
+      <div class="icon">🔎</div>
+      <div>All Jobs</div>
+    </div>
+
+    <div class="cat" onclick="selectCategory('Government')">
+      <div class="icon">🏛️</div>
+      <div>Government</div>
+    </div>
+
+    <div class="cat" onclick="selectCategory('Private')">
+      <div class="icon">🏢</div>
+      <div>Private</div>
+    </div>
+
+    <div class="cat" onclick="selectCategory('Healthcare')">
+      <div class="icon">⚕️</div>
+      <div>Healthcare</div>
+    </div>
+
+    <div class="cat" onclick="selectCategory('Women')">
+      <div class="icon">👩</div>
+      <div>Women Jobs</div>
+    </div>
+
+    <div class="cat" onclick="selectCategory('International')">
+      <div class="icon">🌍</div>
+      <div>International</div>
+    </div>
+
+    <div class="cat" onclick="selectCategory('Differently Abled')">
+      <div class="icon">♿</div>
+      <div>Differently Abled</div>
+    </div>
+
+  </div>
+
+  <div class="status">
+    <span id="jobCount">Loading jobs...</span>
+    <span id="updateStatus">🔄 Syncing</span>
+  </div>
+
+  <div id="jobs" class="jobs">
+    <div class="loader">⏳ Loading latest jobs...</div>
+  </div>
+
+</main>
+
+<footer>
+  JOBMITRA INDIA • Automatic Job Updates
+</footer>
+
+
+<div id="modal" class="modal" onclick="closeOutside(event)">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal()">×</button>
+
+    <div id="detail"></div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+let jobs = [];
+
+let selectedCategory = "All";
+
+
+// --------------------------------------------------
+// CURRENT DEMO DATA
+// This will later be replaced by the automatic API
+// --------------------------------------------------
+
+const demoJobs = [
+
+{
+ id:1,
+ title:"Government Clerk",
+ company:"Government Department",
+ category:"Government",
+ location:"New Delhi",
+ salary:"₹25,000 - ₹40,000",
+ type:"Full Time",
+ experience:"0-2 Years",
+ icon:"🏛️",
+ description:"Government department recruitment for Clerk positions. Candidates should have basic computer knowledge and required educational qualification.",
+ apply:"https://www.ncs.gov.in/"
+},
+
+{
+ id:2,
+ title:"Junior Software Developer",
+ company:"Technology Company",
+ category:"Private",
+ location:"Hyderabad",
+ salary:"₹4 LPA - ₹7 LPA",
+ type:"Full Time",
+ experience:"0-2 Years",
+ icon:"💻",
+ description:"Looking for junior developers with knowledge of JavaScript, HTML, CSS and modern web development.",
+ apply:"#"
+},
+
+{
+ id:3,
+ title:"Staff Nurse",
+ company:"Healthcare Hospital",
+ category:"Healthcare",
+ location:"Bengaluru",
+ salary:"₹30,000 - ₹45,000",
+ type:"Full Time",
+ experience:"1-3 Years",
+ icon:"⚕️",
+ description:"Healthcare organization looking for qualified nursing professionals.",
+ apply:"#"
+},
+
+{
+ id:4,
+ title:"Customer Support Executive",
+ company:"Private Company",
+ category:"Women",
+ location:"Pune",
+ salary:"₹20,000 - ₹32,000",
+ type:"Full Time",
+ experience:"0-2 Years",
+ icon:"👩",
+ description:"Customer support position with training provided. Good communication skills required.",
+ apply:"#"
+},
+
+{
+ id:5,
+ title:"International Hospitality Staff",
+ company:"International Employer",
+ category:"International",
+ location:"Dubai",
+ salary:"AED 3,000 - AED 5,000",
+ type:"Full Time",
+ experience:"1-3 Years",
+ icon:"🌍",
+ description:"Hospitality employment opportunity for eligible candidates.",
+ apply:"#"
+},
+
+{
+ id:6,
+ title:"Data Entry Executive",
+ company:"Inclusive Employer",
+ category:"Differently Abled",
+ location:"Mumbai",
+ salary:"₹18,000 - ₹28,000",
+ type:"Full Time",
+ experience:"0-2 Years",
+ icon:"♿",
+ description:"Data entry opportunity with an inclusive workplace.",
+ apply:"#"
+}
+
+];
+
+
+// --------------------------------------------------
+// LOAD JOBS
+// --------------------------------------------------
+
+async function loadJobs(){
+
+  setStatus("🔄 Syncing");
+
+  try{
+
+    /*
+      FUTURE LIVE API:
+
+      const response = await fetch("/api/jobs");
+      const data = await response.json();
+
+      jobs = data.jobs;
+
+    */
+
+    // Temporary fallback until backend/API is connected
+
+    await new Promise(resolve => setTimeout(resolve,700));
+
+    jobs = demoJobs;
+
+    setStatus("🟢 Updated");
+
+    renderJobs();
+
+  }catch(error){
+
+    console.error(error);
+
+    jobs = [];
+
+    setStatus("🔴 Update failed");
+
+    document.getElementById("jobs").innerHTML =
+      `<div class="empty">
+        ❌ Unable to load jobs.<br>
+        Please try again.
+      </div>`;
+
+  }
+
+}
+
+
+// --------------------------------------------------
+// RENDER JOBS
+// --------------------------------------------------
+
+function renderJobs(){
+
+  const container = document.getElementById("jobs");
+
+  const search =
+    document.getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  let filtered = jobs.filter(job => {
+
+    const categoryMatch =
+      selectedCategory === "All" ||
+      job.category === selectedCategory;
+
+    const searchMatch =
+      !search ||
+      job.title.toLowerCase().includes(search) ||
+      job.company.toLowerCase().includes(search) ||
+      job.location.toLowerCase().includes(search) ||
+      job.category.toLowerCase().includes(search);
+
+    return categoryMatch && searchMatch;
+
+  });
+
+
+  document.getElementById("jobCount").innerText =
+    `${filtered.length} Jobs`;
+
+
+  if(filtered.length === 0){
+
+    container.innerHTML =
+      `<div class="empty">
+        🔍<br><br>
+        No jobs found.
+      </div>`;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    filtered.map(job => `
+
+      <div class="job" onclick="openJob(${job.id})">
+
+        <div class="job-top">
+
+          <div class="job-icon">
+            ${job.icon}
+          </div>
+
+          <div class="job-info">
+
+            <div class="job-title">
+              ${job.title}
+            </div>
+
+            <div class="company">
+              ${job.company}
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="meta">
+
+          <span class="tag">📍 ${job.location}</span>
+
+          <span class="tag">💰 ${job.salary}</span>
+
+          <span class="tag">⏱️ ${job.type}</span>
+
+          <span class="tag">🎓 ${job.experience}</span>
+
+        </div>
+
+        <button
+          class="apply"
+          onclick="event.stopPropagation(); openJob(${job.id})">
+
+          View Job
+
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+// --------------------------------------------------
+// SEARCH
+// --------------------------------------------------
+
+function searchJobs(){
+
+  renderJobs();
+
+}
+
+
+// --------------------------------------------------
+// CATEGORY
+// --------------------------------------------------
+
+function selectCategory(category){
+
+  selectedCategory = category;
+
+  document.querySelectorAll(".cat")
+    .forEach(x => x.classList.remove("active"));
+
+  event.currentTarget.classList.add("active");
+
+  renderJobs();
+
+}
+
+
+// --------------------------------------------------
+// JOB DETAILS
+// --------------------------------------------------
+
+function openJob(id){
+
+  const job = jobs.find(x => x.id === id);
+
+  if(!job) return;
+
+
+  document.getElementById("detail").innerHTML = `
+
+    <div class="detail-icon">
+      ${job.icon}
+    </div>
+
+    <div class="detail-title">
+      ${job.title}
+    </div>
+
+    <div class="detail-company">
+      ${job.company}
+    </div>
+
+    <div class="meta">
+
+      <span class="tag">📍 ${job.location}</span>
+      <span class="tag">💰 ${job.salary}</span>
+      <span class="tag">⏱️ ${job.type}</span>
+      <span class="tag">🎓 ${job.experience}</span>
+
+    </div>
+
+    <div class="detail-section">
+
+      <h3>Job Description</h3>
+
+      <p>
+        ${job.description}
+      </p>
+
+    </div>
+
+    <button
+      class="detail-apply"
+      onclick="applyJob('${job.apply}')">
+
+      📄 APPLY NOW
+
+    </button>
+
+  `;
+
+
+  document.getElementById("modal")
+    .classList.add("show");
+
+}
+
+
+// --------------------------------------------------
+// APPLY
+// --------------------------------------------------
+
+function applyJob(url){
+
+  if(url === "#"){
+
+    alert("Application link will be added when the live job source is connected.");
+
+    return;
+
+  }
+
+  window.open(url,"_blank");
+
+}
+
+
+// --------------------------------------------------
+// MODAL
+// --------------------------------------------------
+
+function closeModal(){
+
+  document.getElementById("modal")
+    .classList.remove("show");
+
+}
+
+
+function closeOutside(event){
+
+  if(event.target.id === "modal"){
+
+    closeModal();
+
+  }
+
+}
+
+
+// --------------------------------------------------
+// AUTO REFRESH
+// --------------------------------------------------
+
+function setStatus(text){
+
+  document.getElementById("updateStatus")
+    .innerText = text;
+
+}
+
+
+// Refresh every 5 minutes
+setInterval(() => {
+
+  loadJobs();
+
+}, 5 * 60 * 1000);
+
+
+// First load
+loadJobs();
+
+</script>
+
+</body>
+</html>
