@@ -1,7 +1,8 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const INDIA_SOURCES = require("./india-sources");
 
-const SOURCES = [
+const LEGACY_SOURCES = [
     {
         name: "UPSC",
         url: "https://upsc.gov.in/examinations/active-exams",
@@ -17,6 +18,11 @@ const SOURCES = [
         url: "https://rrbcdg.gov.in/",
         baseUrl: "https://rrbcdg.gov.in"
     }
+];
+
+const SOURCES = [
+    ...LEGACY_SOURCES,
+    ...INDIA_SOURCES
 ];
 
 const HEADERS = {
@@ -102,15 +108,159 @@ function useful(title) {
     return words.some(x => t.includes(x));
 }
 
+
+async function readKPSC(limit) {
+    const source = SOURCES.find(s => s.name === "KPSC");
+
+    if (!source) {
+        console.log("❌ KPSC source not found");
+        return [];
+    }
+
+    console.log(`\n🌐 KPSC`);
+    console.log(`🔧 KPSC: using AJAX notification endpoint...`);
+
+    const https = require("https");
+
+    const endpoint =
+        "https://kpsconline.karnataka.gov.in/Notification/Get_Landing_Page_Notification_Details";
+
+    try {
+        const response = await axios.get(endpoint, {
+            timeout: 30000,
+            headers: {
+                "User-Agent": HEADERS["User-Agent"],
+                "Accept": "text/html, */*",
+                "X-Requested-With": "XMLHttpRequest",
+                "Referer":
+                    "https://kpsconline.karnataka.gov.in/Notification/LandingPageNotificationslistApplicants"
+            },
+            httpsAgent: new https.Agent({
+                rejectUnauthorized: false
+            })
+        });
+
+        console.log(`✅ KPSC AJAX HTTP ${response.status}`);
+
+        const $ = cheerio.load(response.data, { xmlMode: true });
+        const results = [];
+        const seen = new Set();
+
+        $("tbody tr").each((i, el) => {
+            if (results.length >= limit) return false;
+
+            const cells = $(el).find("td");
+
+            if (cells.length < 6) return;
+
+            const title = clean($(cells[0]).text());
+            const notificationNo = clean($(cells[1]).text());
+            const notificationDate = clean($(cells[2]).text());
+            const startDate = clean($(cells[3]).text());
+            const lastDate = clean($(cells[4]).text());
+
+            const pdfHref = $(cells[5]).find("a").attr("href");
+
+            if (!title || !notificationNo) return;
+
+            const key = `${title}|${notificationNo}`;
+
+            if (seen.has(key)) return;
+            seen.add(key);
+
+            const externalId = `KPSC-${notificationNo}`;
+
+            let applyUrl =
+                "https://kpsconline.karnataka.gov.in/Login/Login";
+
+            if (pdfHref) {
+                const fullPdf = new URL(
+                    pdfHref,
+                    "https://kpsconline.karnataka.gov.in"
+                ).href;
+
+                results.push({
+                    title,
+                    company: "Karnataka Public Service Commission",
+                    location: "Karnataka",
+                    state: "Karnataka",
+                    category: "Notification",
+                    source: "KPSC",
+                    externalId: `KPSC-${notificationNo}`,
+                    externalId,
+                    notificationNumber: notificationNo,
+                    notificationDate,
+                    applicationStartDate: startDate,
+                    applicationLastDate: lastDate,
+                    url: fullPdf,
+                    applyUrl
+                });
+            } else {
+                results.push({
+                    title,
+                    company: "Karnataka Public Service Commission",
+                    location: "Karnataka",
+                    state: "Karnataka",
+                    category: "Notification",
+                    source: "KPSC",
+                    externalId: `KPSC-${notificationNo}`,
+                    externalId,
+                    notificationNumber: notificationNo,
+                    notificationDate,
+                    applicationStartDate: startDate,
+                    applicationLastDate: lastDate,
+                    url: applyUrl,
+                    applyUrl
+                });
+            }
+        });
+
+        console.log(`📄 KPSC notifications parsed: ${results.length}`);
+        return results;
+
+    } catch (e) {
+        console.log(`❌ KPSC AJAX: ${e.message}`);
+        return [];
+    }
+}
+
 async function readSource(source, limit) {
     console.log(`\n🌐 ${source.name}`);
 
     try {
-        const response = await axios.get(source.url, {
-            timeout: 20000,
-            headers: HEADERS,
-            maxRedirects: 5
-        });
+        let response;
+
+        try {
+            response = await axios.get(source.url, {
+                timeout: 20000,
+                headers: HEADERS,
+                maxRedirects: 5
+            });
+        } catch (firstError) {
+
+            const sslError =
+                String(firstError.message || "").includes("certificate") ||
+                String(firstError.message || "").includes("EPROTO") ||
+                String(firstError.message || "").includes("SSL");
+
+            if (!sslError) {
+                throw firstError;
+            }
+
+            console.log(`⚠️ ${source.name}: HTTPS certificate issue`);
+            console.log(`🔧 ${source.name}: trying safe fallback...`);
+
+            response = await axios.get(source.url, {
+                timeout: 30000,
+                headers: HEADERS,
+                maxRedirects: 5,
+                httpsAgent: new (require("https").Agent)({
+                    rejectUnauthorized: false
+                })
+            });
+
+            console.log(`✅ ${source.name}: fallback connection successful`);
+        }
 
         console.log(`✅ HTTP ${response.status}`);
 
@@ -159,7 +309,9 @@ async function readSource(source, limit) {
                         : "Railway Recruitment Board",
                 department:
                     source.name,
-                location: "India",
+                location:
+                    source.region ||
+                    "India",
                 salary: "See official notification",
                 type: "Government",
                 qualification: (() => {
@@ -197,9 +349,9 @@ async function readSource(source, limit) {
 }
 
 async function fetchJobs(options = {}) {
-    const limit = Math.min(
-        Number(options.limit) || 200,
-        200
+    const limit = Math.max(
+        Number(options.limit) || 500,
+        1
     );
 
     console.log("\n🇮🇳 JOBMITRA INDIA");
@@ -212,7 +364,9 @@ async function fetchJobs(options = {}) {
     for (const source of SOURCES) {
         console.log(`\n🔎 SCANNING ${source.name}`);
 
-        const data = await readSource(source, limit);
+        const data = source.name === "KPSC"
+            ? await readKPSC(limit)
+            : await readSource(source, limit);
 
         console.log(`📦 ${source.name} returned: ${data.length}`);
 
@@ -253,5 +407,6 @@ async function fetchJobs(options = {}) {
 }
 
 module.exports = {
-    fetchJobs
+    fetchJobs,
+    readKPSC
 };

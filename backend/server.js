@@ -207,7 +207,7 @@ async function syncJobs() {
     try {
 
         const jobs = await fetchJobs({
-            limit: 50
+            limit: 10000
         });
 
         console.log(`📥 Jobs fetched: ${jobs.length}`);

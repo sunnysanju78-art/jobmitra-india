@@ -1,0 +1,32 @@
+const SOURCES = [
+  {name:"APPSC",region:"Andhra Pradesh",sector:"Government",url:"https://psc.ap.gov.in/",baseUrl:"https://psc.ap.gov.in/"},
+  {name:"Arunachal Pradesh PSC",region:"Arunachal Pradesh",sector:"Government",url:"https://appsc.gov.in/",baseUrl:"https://appsc.gov.in/"},
+  {name:"APSC",region:"Assam",sector:"Government",url:"https://apsc.nic.in/",baseUrl:"https://apsc.nic.in/"},
+  {name:"BPSC",region:"Bihar",sector:"Government",url:"https://bpsc.bihar.gov.in/",baseUrl:"https://bpsc.bihar.gov.in/"},
+  {name:"CGPSC",region:"Chhattisgarh",sector:"Government",url:"https://psc.cg.gov.in/",baseUrl:"https://psc.cg.gov.in/"},
+  {name:"Goa PSC",region:"Goa",sector:"Government",url:"https://gpsc.goa.gov.in/",baseUrl:"https://gpsc.goa.gov.in/"},
+  {name:"GPSC",region:"Gujarat",sector:"Government",url:"https://gpsc.gujarat.gov.in/",baseUrl:"https://gpsc.gujarat.gov.in/"},
+  {name:"HPSC",region:"Haryana",sector:"Government",url:"https://hpsc.gov.in/",baseUrl:"https://hpsc.gov.in/"},
+  {name:"HPPSC",region:"Himachal Pradesh",sector:"Government",url:"https://hppsc.hp.gov.in/",baseUrl:"https://hppsc.hp.gov.in/"},
+  {name:"JPSC",region:"Jharkhand",sector:"Government",url:"https://www.jpsc.gov.in/",baseUrl:"https://www.jpsc.gov.in/"},
+  {name:"KPSC",region:"Karnataka",sector:"Government",url:"https://kpsconline.karnataka.gov.in/Notification/LandingPageNotificationslistApplicants",baseUrl:"https://kpsconline.karnataka.gov.in/"},
+  {name:"Kerala PSC",region:"Kerala",sector:"Government",url:"https://www.keralapsc.gov.in/",baseUrl:"https://www.keralapsc.gov.in/"},
+  {name:"MPPSC",region:"Madhya Pradesh",sector:"Government",url:"https://mppsc.mp.gov.in/",baseUrl:"https://mppsc.mp.gov.in/"},
+  {name:"MPSC",region:"Maharashtra",sector:"Government",url:"https://mpsc.gov.in/",baseUrl:"https://mpsc.gov.in/"},
+  {name:"Manipur PSC",region:"Manipur",sector:"Government",url:"https://mpscmanipur.gov.in/",baseUrl:"https://mpscmanipur.gov.in/"},
+  {name:"Meghalaya PSC",region:"Meghalaya",sector:"Government",url:"https://mpsc.meghalaya.gov.in/",baseUrl:"https://mpsc.meghalaya.gov.in/"},
+  {name:"Mizoram PSC",region:"Mizoram",sector:"Government",url:"https://mpsc.mizoram.gov.in/",baseUrl:"https://mpsc.mizoram.gov.in/"},
+  {name:"Nagaland PSC",region:"Nagaland",sector:"Government",url:"https://npsc.nagaland.gov.in/",baseUrl:"https://npsc.nagaland.gov.in/"},
+  {name:"OPSC",region:"Odisha",sector:"Government",url:"https://www.opsc.gov.in/",baseUrl:"https://www.opsc.gov.in/"},
+  {name:"PPSC",region:"Punjab",sector:"Government",url:"https://ppsc.gov.in/",baseUrl:"https://ppsc.gov.in/"},
+  {name:"RPSC",region:"Rajasthan",sector:"Government",url:"https://rpsc.rajasthan.gov.in/",baseUrl:"https://rpsc.rajasthan.gov.in/"},
+  {name:"SPSC",region:"Sikkim",sector:"Government",url:"https://spsc.sikkim.gov.in/",baseUrl:"https://spsc.sikkim.gov.in/"},
+  {name:"TNPSC",region:"Tamil Nadu",sector:"Government",url:"https://www.tnpsc.gov.in/",baseUrl:"https://www.tnpsc.gov.in/"},
+  {name:"TGPSC",region:"Telangana",sector:"Government",url:"https://www.tgpsc.gov.in/",baseUrl:"https://www.tgpsc.gov.in/"},
+  {name:"TPSC",region:"Tripura",sector:"Government",url:"https://tpsc.tripura.gov.in/",baseUrl:"https://tpsc.tripura.gov.in/"},
+  {name:"UPPSC",region:"Uttar Pradesh",sector:"Government",url:"https://uppsc.up.nic.in/",baseUrl:"https://uppsc.up.nic.in/"},
+  {name:"UKPSC",region:"Uttarakhand",sector:"Government",url:"https://psc.uk.gov.in/",baseUrl:"https://psc.uk.gov.in/"},
+  {name:"WBPSC",region:"West Bengal",sector:"Government",url:"https://psc.wb.gov.in/",baseUrl:"https://psc.wb.gov.in/"}
+];
+
+module.exports = SOURCES;
