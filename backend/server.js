@@ -48,7 +48,12 @@ app.get("/api/status", (req, res) => {
 
 app.get("/api/jobs", (req, res) => {
     try {
-        const jobs = db.getJobs();
+        const jobs = db.getJobs().map(job => ({
+            ...job,
+            company: job.company === "Railway Recruitment Board" && job.source && job.source !== "Railway Recruitment Board"
+                ? job.source
+                : job.company
+        }));
 
         res.json({
             success: true,
