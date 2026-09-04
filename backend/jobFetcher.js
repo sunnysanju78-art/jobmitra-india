@@ -677,59 +677,61 @@ async function fetchJobs(options = {}) {
 
         let data = [];
 
+        const withTimeout = async (fn, sourceName, ms = 35000) => {
+            try {
+                return await Promise.race([
+                    fn(),
+                    new Promise(resolve => setTimeout(() => {
+                        console.log(`⏱️ ${sourceName}: hard timeout`);
+                        resolve([]);
+                    }, ms))
+                ]);
+            } catch (e) {
+                console.log(`⚠️ ${sourceName}: ${e.message}`);
+                return [];
+            }
+        };
+
         if (source.name === "India Post") {
-            data = await readIndiaPost(perSourceLimit);
+            data = await withTimeout(() => readIndiaPost(perSourceLimit), source.name);
         } else if (source.name === "India Post GDS") {
-            data = await readGDS(perSourceLimit);
+            data = await withTimeout(() => readGDS(perSourceLimit), source.name);
 
         } else if (source.name === "KPSC") {
-            data = await readKPSC(
-                perSourceLimit
-            );
+            data = await withTimeout(() => readKPSC(perSourceLimit), source.name);
 
         } else if (source.name === "TGPSC") {
 
-            data = await readTGPSC(
-                perSourceLimit
-            );
+            data = await withTimeout(() => readTGPSC(perSourceLimit), source.name);
 
         } else if (source.name === "TNPSC") {
 
-            data = await readTNPSC(
-                perSourceLimit
-            );
+            data = await withTimeout(() => readTNPSC(perSourceLimit), source.name);
 
         } else if (source.name === "APPSC") {
 
-            data = await readAPPSC(
-                perSourceLimit
-            );
+            data = await withTimeout(() => readAPPSC(perSourceLimit), source.name);
 
         } else if (source.name === "DRDO") {
 
-            data = await readDRDO(
-                perSourceLimit
-            );
+            data = await withTimeout(() => readDRDO(perSourceLimit), source.name);
                                                                           } else if (["Bank of Maharashtra","UCO Bank","Indian Bank","Bank of India","Canara Bank","Bank of Baroda","Central Bank of India","Union Bank of India","PNB","SBI","IBPS","Indian Army","Indian Navy","Indian Air Force","CAPF","Coast Guard","RPF"].includes(source.name)) {
             if (!bankDefenceBatch) {
-                bankDefenceBatch = await readBankDefence(perSourceLimit);
+                bankDefenceBatch = await withTimeout(() => readBankDefence(perSourceLimit), source.name);
             }
             data = bankDefenceBatch.filter(j => j.source === source.name);
 
 
         } else if (source.name === "Railway Recruitment Board") {
 
-            data = await readRRB(
-                perSourceLimit
-            );
+            data = await withTimeout(() => readRRB(perSourceLimit), source.name);
 
         } else {
 
-            data = await readSource(
-                source,
-                perSourceLimit
-            );
+            data = await withTimeout(() => readSource(source, perSourceLimit), source.name);
         }
+
+        if (!Array.isArray(data)) data = [];
 
         console.log(
             `📦 ${source.name} returned: ${data.length}`
