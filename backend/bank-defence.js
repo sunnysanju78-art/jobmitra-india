@@ -128,8 +128,18 @@ async function readBankDefence(limit = 50) {
   const all = [];
 
   for (const source of [...BANKS, ...DEFENCE]) {
-    const rows = await readSource(source, limit);
-    all.push(...rows);
+    try {
+      const rows = await Promise.race([
+        readSource(source, limit),
+        new Promise(resolve => setTimeout(() => {
+          console.log(`⏱️ ${source.name}: 10s timeout`);
+          resolve([]);
+        }, 10000))
+      ]);
+      all.push(...(Array.isArray(rows) ? rows : []));
+    } catch (e) {
+      console.log(`⚠️ ${source.name}: ${e.message}`);
+    }
   }
 
   const unique = [];
