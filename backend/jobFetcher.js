@@ -715,7 +715,7 @@ async function fetchJobs(options = {}) {
         } else if (source.name === "DRDO") {
 
             data = await withTimeout(() => readDRDO(perSourceLimit), source.name);
-                                                                          } else if (["Bank of Maharashtra","UCO Bank","Indian Bank","Bank of India","Canara Bank","Bank of Baroda","Central Bank of India","Union Bank of India","PNB","SBI","IBPS","Indian Army","Indian Navy","Indian Air Force","CAPF","Coast Guard","RPF"].includes(source.name)) {
+                                                                          } else if (["Bank of Maharashtra","UCO Bank","Indian Bank","Bank of India","Canara Bank","Bank of Baroda","Central Bank of India","Union Bank of India","PNB","SBI","IBPS","RBI","NABARD","SEBI","SIDBI","LIC","NIACL","OICL","GIC","PFRDA","Indian Army","Indian Navy","Indian Air Force","CAPF","BSF","CRPF","CISF","ITBP","SSB","Coast Guard","DRDO","ISRO","HAL","BEL","RPF"].includes(source.name)) {
             if (!bankDefenceBatch) {
                 bankDefenceBatch = await withTimeout(() => readBankDefence(perSourceLimit), source.name);
             }
