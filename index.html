@@ -10,214 +10,283 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
+  font-family:Arial,sans-serif;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
   background:#f4f7fb;
   color:#172033;
 }
 
 header{
-  background:linear-gradient(135deg,#071d49,#0d47a1);
+  background:linear-gradient(135deg,#ff7a00,#ffb000);
   color:white;
-  padding:22px 16px;
+  padding:24px 16px;
   text-align:center;
-  box-shadow:0 3px 12px rgba(0,0,0,.15);
+  box-shadow:0 3px 15px rgba(0,0,0,.12);
 }
 
-.logo{
-  font-size:25px;
+header h1{
+  font-size:29px;
   font-weight:800;
 }
 
-.live{
-  color:#62ff86;
-  font-size:13px;
-  margin-left:5px;
-}
-
-.subtitle{
-  margin-top:8px;
-  font-size:16px;
-  font-weight:600;
-}
-
-.tagline{
-  margin-top:6px;
-  opacity:.9;
-  font-size:13px;
+header p{
+  margin-top:7px;
+  font-size:14px;
+  opacity:.95;
 }
 
 .container{
-  width:min(1100px,94%);
-  margin:18px auto;
+  width:min(1150px,94%);
+  margin:20px auto 40px;
 }
 
-.searchBox{
-  display:flex;
-  gap:8px;
-  margin-bottom:14px;
-}
-
-.searchBox input{
-  flex:1;
-  padding:14px;
-  border:1px solid #ccd4df;
-  border-radius:12px;
-  font-size:15px;
-  outline:none;
-  background:white;
-}
-
-.searchBox button{
-  width:52px;
-  border:0;
-  border-radius:12px;
-  background:#0d47a1;
-  color:white;
-  font-size:20px;
-}
-
-.nav{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding-bottom:8px;
-  margin-bottom:12px;
-}
-
-.nav button{
-  white-space:nowrap;
-  border:0;
-  padding:11px 15px;
-  border-radius:22px;
-  background:white;
-  color:#25324a;
-  box-shadow:0 1px 5px rgba(0,0,0,.1);
-  font-weight:600;
-}
-
-.nav button.active{
-  background:#0d47a1;
-  color:white;
-}
-
-.filters{
+.stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
   margin-bottom:18px;
 }
 
-select{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccd4df;
-  border-radius:10px;
+.stat{
   background:white;
-  font-size:14px;
+  border-radius:14px;
+  padding:16px 10px;
+  text-align:center;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.status{
+.stat b{
+  display:block;
+  font-size:24px;
+  color:#ff7200;
+}
+
+.stat span{
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+  color:#657084;
+}
+
+.filters{
   background:white;
-  padding:13px 15px;
-  border-radius:12px;
-  margin-bottom:15px;
-  box-shadow:0 1px 5px rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 3px 14px rgba(0,0,0,.07);
+  margin-bottom:20px;
+}
+
+.search{
+  width:100%;
+  padding:14px 15px;
+  border:1px solid #d9dee8;
+  border-radius:11px;
+  font-size:15px;
+  outline:none;
+  margin-bottom:12px;
+}
+
+.search:focus,
+select:focus{
+  border-color:#ff8500;
+}
+
+.filter-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+select,
+.filter-grid button{
+  width:100%;
+  padding:12px;
+  border:1px solid #d9dee8;
+  border-radius:10px;
+  background:white;
+  font-size:13px;
+  outline:none;
+}
+
+.filter-grid button{
+  background:#172033;
+  color:white;
+  cursor:pointer;
   font-weight:700;
 }
 
-#jobs{
+.filter-grid button:hover{
+  opacity:.9;
+}
+
+.results-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin:20px 2px 12px;
+}
+
+.results-head h2{
+  font-size:20px;
+}
+
+#status{
+  font-size:12px;
+  color:#667085;
+}
+
+#results{
   display:grid;
+  grid-template-columns:repeat(2,1fr);
   gap:14px;
 }
 
 .card{
   background:white;
-  border-radius:15px;
+  border-radius:16px;
   padding:17px;
-  box-shadow:0 2px 9px rgba(0,0,0,.09);
-  border-left:5px solid #0d47a1;
+  box-shadow:0 3px 14px rgba(0,0,0,.07);
+  border:1px solid #edf0f5;
 }
 
-.badge{
-  display:inline-block;
-  background:#e8f0ff;
-  color:#0d47a1;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:12px;
-  font-weight:700;
-  margin-bottom:9px;
-}
-
-.title{
-  font-size:18px;
-  line-height:1.35;
-  font-weight:800;
+.card h3{
+  font-size:17px;
+  line-height:1.4;
   margin-bottom:12px;
+}
+
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-bottom:10px;
+}
+
+.tag{
+  background:#f0f3f8;
+  padding:6px 8px;
+  border-radius:7px;
+  font-size:11px;
+  color:#455066;
+}
+
+.tag.source{
+  background:#fff1e5;
+  color:#d85f00;
+}
+
+.tag.type{
+  background:#eaf7ee;
+  color:#218344;
 }
 
 .info{
   display:grid;
-  gap:7px;
-  color:#4c586b;
-  font-size:14px;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin:12px 0;
+}
+
+.info-box{
+  background:#f7f9fc;
+  border-radius:9px;
+  padding:9px;
+}
+
+.info-box small{
+  display:block;
+  color:#7a8495;
+  font-size:10px;
+  margin-bottom:3px;
+}
+
+.info-box strong{
+  display:block;
+  font-size:12px;
   line-height:1.35;
 }
 
+.date{
+  font-size:12px;
+  color:#5d687a;
+  margin:7px 0;
+  line-height:1.4;
+}
+
 .actions{
-  display:flex;
-  gap:9px;
-  margin-top:15px;
-  flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:14px;
 }
 
-.actions button,
-.actions a{
-  border:0;
+.actions a,
+.actions button{
   text-decoration:none;
-  padding:11px 14px;
+  border:0;
   border-radius:9px;
+  padding:11px 8px;
+  text-align:center;
   font-weight:700;
-  font-size:13px;
+  font-size:12px;
+  cursor:pointer;
 }
 
-.detailsBtn{
-  background:#edf1f7;
-  color:#172033;
+.details-btn{
+  background:#edf2f8;
+  color:#243044;
 }
 
-.apply{
-  background:#0d47a1;
+.apply-btn{
+  background:#ff7200;
   color:white;
 }
 
+.loading,
 .empty{
+  grid-column:1/-1;
   background:white;
-  padding:30px 18px;
+  border-radius:15px;
+  padding:35px 20px;
   text-align:center;
-  border-radius:14px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
   color:#687386;
+  box-shadow:0 3px 14px rgba(0,0,0,.06);
 }
+
+footer{
+  text-align:center;
+  padding:25px 15px;
+  color:#7b8492;
+  font-size:12px;
+}
+
+/* MODAL */
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:999;
-  padding:20px;
+  background:rgba(0,0,0,.58);
+  z-index:1000;
+  padding:18px;
   overflow:auto;
 }
 
-.modalBox{
-  width:min(700px,100%);
-  margin:30px auto;
+.modal.show{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-box{
+  width:min(650px,100%);
+  max-height:92vh;
+  overflow:auto;
   background:white;
-  border-radius:16px;
+  border-radius:18px;
   padding:20px;
   position:relative;
 }
@@ -225,53 +294,105 @@ select{
 .close{
   position:absolute;
   right:14px;
-  top:10px;
+  top:12px;
+  width:34px;
+  height:34px;
   border:0;
-  background:#eee;
-  width:35px;
-  height:35px;
   border-radius:50%;
+  background:#f0f2f5;
   font-size:20px;
+  cursor:pointer;
 }
 
-.modalTitle{
+.modal-box h2{
   padding-right:40px;
   font-size:21px;
-  font-weight:800;
-  margin-bottom:18px;
-}
-
-.detailRow{
-  border-bottom:1px solid #e6e9ee;
-  padding:11px 0;
   line-height:1.4;
+  margin-bottom:14px;
 }
 
-.detailRow b{
+.detail-row{
+  padding:11px 0;
+  border-bottom:1px solid #edf0f4;
+}
+
+.detail-row:last-child{
+  border-bottom:0;
+}
+
+.detail-row label{
   display:block;
-  color:#0d47a1;
-  font-size:12px;
-  margin-bottom:3px;
+  color:#7b8492;
+  font-size:11px;
+  margin-bottom:4px;
 }
 
-footer{
-  text-align:center;
-  padding:28px 15px;
-  color:#6d7788;
+.detail-row div{
   font-size:13px;
+  line-height:1.5;
+  font-weight:600;
 }
 
-@media(max-width:700px){
-  .filters{
+.modal-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:16px;
+}
+
+.modal-actions a{
+  padding:13px;
+  text-align:center;
+  border-radius:10px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+}
+
+.modal-view{
+  background:#edf2f8;
+  color:#243044;
+}
+
+.modal-apply{
+  background:#ff7200;
+  color:white;
+}
+
+@media(max-width:800px){
+  .filter-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  #results{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:550px){
+  header h1{
+    font-size:24px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .filter-grid{
     grid-template-columns:1fr;
   }
 
-  .title{
-    font-size:17px;
+  .info{
+    grid-template-columns:1fr;
   }
 
-  .container{
-    width:94%;
+  .results-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .card h3{
+    font-size:16px;
   }
 }
 </style>
@@ -280,170 +401,976 @@ footer{
 <body>
 
 <header>
-  <div class="logo">
-    💼 JOBMITRA INDIA 🇮🇳
-    <span class="live">● LIVE</span>
-  </div>
-
-  <div class="subtitle">
-    Government Jobs & Updates 🇮🇳
-  </div>
-
-  <div class="tagline">
-    Jobs • Notifications • Results • Admit Cards
-  </div>
+  <h1>🇮🇳 JOBMITRA INDIA</h1>
+  <p>Government Jobs • Notifications • Results • Admit Cards</p>
 </header>
 
-<main class="container">
+<div class="container">
 
-  <div class="searchBox">
-    <input
-      id="search"
-      type="search"
-      placeholder="Search job, department, post..."
-      autocomplete="off">
-    <button onclick="render()">🔍</button>
-  </div>
+  <div class="stats">
+    <div class="stat">
+      <b id="totalCount">0</b>
+      <span>Total Records</span>
+    </div>
 
-  <div class="nav">
-    <button class="active" onclick="setCategory('ALL',this)">🏠 All</button>
-    <button onclick="setCategory('JOB',this)">💼 Jobs</button>
-    <button onclick="setCategory('NOTIFICATION',this)">📢 Notifications</button>
-    <button onclick="setCategory('RESULT',this)">📝 Results</button>
-    <button onclick="setCategory('ADMIT CARD',this)">🎫 Admit Cards</button>
+    <div class="stat">
+      <b id="jobCount">0</b>
+      <span>Jobs</span>
+    </div>
+
+    <div class="stat">
+      <b id="notificationCount">0</b>
+      <span>Notifications</span>
+    </div>
+
+    <div class="stat">
+      <b id="resultCount">0</b>
+      <span>Results</span>
+    </div>
   </div>
 
   <div class="filters">
 
-    <select id="qualification" onchange="render()">
-      <option value="">All Qualifications</option>
-    </select>
+    <input
+      id="search"
+      class="search"
+      type="text"
+      placeholder="🔍 Search job, department, exam, qualification..."
+    >
 
-    <select id="state" onchange="render()">
-      <option value="">All States</option>
-    </select>
+    <div class="filter-grid">
 
-    <select id="source" onchange="render()">
-      <option value="">All Sources</option>
-    </select>
+      <select id="stateFilter">
+        <option value="">🇮🇳 All States</option>
+      </select>
 
+      <select id="departmentFilter">
+        <option value="">🏢 All Departments</option>
+      </select>
+
+      <select id="sourceFilter">
+        <option value="">🏛️ All Sources</option>
+      </select>
+
+      <select id="qualificationFilter">
+        <option value="">🎓 All Qualifications</option>
+      </select>
+
+      <select id="typeFilter">
+        <option value="">📋 All Types</option>
+      </select>
+
+      <select id="categoryFilter">
+        <option value="">📂 All Categories</option>
+      </select>
+
+      <select id="sortFilter">
+        <option value="newest">🆕 Newest First</option>
+        <option value="oldest">📅 Oldest First</option>
+        <option value="title">🔤 Title A-Z</option>
+      </select>
+
+      <button onclick="clearFilters()">✕ Clear Filters</button>
+
+    </div>
   </div>
 
-  <div id="status" class="status">
-    🔄 Connecting to JOBMITRA backend...
+  <div class="results-head">
+    <h2>📢 Government Opportunities</h2>
+    <span id="status">Loading...</span>
   </div>
 
-  <section id="jobs"></section>
+  <div id="results">
+    <div class="loading">
+      ⏳ Loading government records...
+    </div>
+  </div>
 
-</main>
+</div>
 
 <footer>
-  <b>JOBMITRA INDIA 🇮🇳</b><br>
-  Government Jobs • Notifications • Admit Cards • Results
-  <br><br>
-  🔄 Automatic Job Updates Every 10 Minutes
+  🇮🇳 JOBMITRA INDIA • Government Opportunities Portal
 </footer>
 
-<div id="modal" class="modal" onclick="outsideClose(event)">
-  <div class="modalBox">
-    <button class="close" onclick="closeModal()">×</button>
+<!-- DETAILS MODAL -->
+
+<div id="detailModal" class="modal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+
+    <button class="close" onclick="closeDetails()">×</button>
+
+    <h2 id="modalTitle">Job Details</h2>
+
     <div id="modalContent"></div>
+
+    <div class="modal-actions">
+      <a id="modalView" class="modal-view" href="#" target="_blank" rel="noopener">
+        📄 VIEW OFFICIAL
+      </a>
+
+      <a id="modalApply" class="modal-apply" href="#" target="_blank" rel="noopener">
+        🚀 APPLY NOW
+      </a>
+    </div>
+
   </div>
 </div>
 
 <script>
 
-/* ======================================
-   JOBMITRA API
-   ====================================== */
-
-const API = "http://10.192.235.240:3000/api/jobs";
+const API = "https://jobmitra-india.onrender.com/api/jobs";
 
 let allJobs = [];
-let category = "ALL";
+let filteredJobs = [];
 
-/* ======================================
-   NORMALIZE JOB
-   ====================================== */
+const searchInput =
+  document.getElementById("search");
 
-function normalizeJob(j){
+const stateFilter =
+  document.getElementById("stateFilter");
 
-  return {
-    ...j,
+const departmentFilter =
+  document.getElementById("departmentFilter");
 
-    title:
-      j.title ||
-      j.headline ||
-      j.post ||
-      "Government Update",
+const sourceFilter =
+  document.getElementById("sourceFilter");
 
-    organization:
-      j.organization ||
-      j.company ||
-      j.department ||
-      "Government Department",
+const qualificationFilter =
+  document.getElementById("qualificationFilter");
 
-    department:
-      j.department ||
-      j.organization ||
-      j.company ||
-      "Government Department",
+const typeFilter =
+  document.getElementById("typeFilter");
 
-    location:
-      j.location ||
-      j.state ||
-      "India",
+const categoryFilter =
+  document.getElementById("categoryFilter");
 
-    qualification:
-      j.qualification ||
-      "See official notification",
+const sortFilter =
+  document.getElementById("sortFilter");
 
-    vacancies:
-      j.vacancies ||
-      "See official notification",
 
-    salary:
-      j.salary ||
-      "See official notification",
+searchInput.addEventListener("input", applyFilters);
+stateFilter.addEventListener("change", applyFilters);
+departmentFilter.addEventListener("change", applyFilters);
+sourceFilter.addEventListener("change", applyFilters);
+qualificationFilter.addEventListener("change", applyFilters);
+typeFilter.addEventListener("change", applyFilters);
+categoryFilter.addEventListener("change", applyFilters);
+sortFilter.addEventListener("change", applyFilters);
 
-    lastDate:
-      j.lastDate ||
-      j.endDate ||
-      "See official notification",
 
-    source:
-      j.source ||
-      "Government",
+async function loadJobs(){
 
-    description:
-      j.description ||
-      j.content ||
-      "See official notification",
+  const status = document.getElementById("status");
+  const results = document.getElementById("results");
 
-    url:
-      j.url ||
-      j.applyUrl ||
-      j.sourceUrl ||
-      j.redirectUrl ||
-      "#",
+  try{
 
-    type:
-      String(
-        j.type ||
-        j.category ||
-        j.jobType ||
-        "NOTIFICATION"
-      ).toUpperCase()
-  };
+    status.textContent = "Connecting...";
+
+    const response = await fetch(API,{
+      method:"GET",
+      headers:{
+        "Accept":"application/json"
+      },
+      cache:"no-store"
+    });
+
+    if(!response.ok){
+      throw new Error("HTTP " + response.status);
+    }
+
+    const data = await response.json();
+
+    if(Array.isArray(data)){
+      allJobs = data;
+    }
+    else if(Array.isArray(data.jobs)){
+      allJobs = data.jobs;
+    }
+    else if(Array.isArray(data.data)){
+      allJobs = data.data;
+    }
+    else{
+      throw new Error("Invalid API response");
+    }
+
+    filteredJobs = [...allJobs];
+
+    status.textContent = `${allJobs.length} records`;
+
+    try{
+      buildFilters();
+    }catch(e){
+      console.error("Filter error:", e);
+    }
+
+    try{
+      updateStats();
+    }catch(e){
+      console.error("Stats error:", e);
+    }
+
+    try{
+      applyFilters();
+    }catch(e){
+      console.error("Render error:", e);
+      results.innerHTML = `<div class="empty">Loaded ${allJobs.length} jobs successfully.</div>`;
+    }
+
+  }
+  catch(error){
+
+    console.error("JOBMITRA LOAD ERROR:", error);
+
+    status.textContent = "Connection failed";
+
+    results.innerHTML = `
+      <div class="empty">
+        ❌ Unable to load jobs.<br><br>
+        ${error.message}
+      </div>
+    `;
+  }
 }
 
-/* ======================================
-   ESCAPE HTML
-   ====================================== */
+function value(job,key){
 
-function esc(v){
+  return String(job?.[key] ?? "")
+    .trim();
+}
 
-  return String(v ?? "")
+
+function getState(job){
+
+  return value(job,"state") ||
+         value(job,"location") ||
+         "India";
+}
+
+
+function getDepartment(job){
+
+  return value(job,"department") ||
+         value(job,"company") ||
+         "Government";
+}
+
+
+function getSource(job){
+
+  return value(job,"source") ||
+         value(job,"company") ||
+         "Government";
+}
+
+
+function getQualification(job){
+
+  return value(job,"qualification") ||
+         "See official notification";
+}
+
+
+function getType(job){
+
+  return value(job,"type") ||
+         "Government";
+}
+
+
+function getCategory(job){
+
+  return value(job,"category") ||
+         "Job";
+}
+
+
+function uniqueValues(getter){
+
+  return [...new Set(
+    allJobs
+      .map(getter)
+      .map(x => x.trim())
+      .filter(Boolean)
+  )].sort((a,b)=>
+    a.localeCompare(b)
+  );
+}
+
+
+function populateSelect(select,firstOption,values){
+
+  select.innerHTML =
+    `<option value="">${firstOption}</option>` +
+    values.map(x =>
+      `<option value="${escapeHtml(x)}">
+        ${escapeHtml(x)}
+      </option>`
+    ).join("");
+}
+
+
+function buildFilters(){
+
+  populateSelect(
+    stateFilter,
+    "🇮🇳 All States",
+    uniqueValues(getState)
+  );
+
+  populateSelect(
+    departmentFilter,
+    "🏢 All Departments",
+    uniqueValues(getDepartment)
+  );
+
+  populateSelect(
+    sourceFilter,
+    "🏛️ All Sources",
+    uniqueValues(getSource)
+  );
+
+  populateSelect(
+    qualificationFilter,
+    "🎓 All Qualifications",
+    [
+      "10th",
+      "Inter / 12th",
+      "ITI",
+      "Diploma",
+      "Degree / Graduate",
+      "Post Graduate",
+      "PhD",
+      "Professional"
+    ]
+  );
+
+  populateSelect(
+    typeFilter,
+    "📋 All Types",
+    uniqueValues(getType)
+  );
+
+  populateSelect(
+    categoryFilter,
+    "📂 All Categories",
+    uniqueValues(getCategory)
+  );
+}
+
+
+function applyFilters(){
+
+  const q =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+  const state =
+    stateFilter.value.toLowerCase();
+
+  const department =
+    departmentFilter.value.toLowerCase();
+
+  const source =
+    sourceFilter.value.toLowerCase();
+
+  const qualification =
+    qualificationFilter.value.toLowerCase();
+
+  const type =
+    typeFilter.value.toLowerCase();
+
+  const category =
+    categoryFilter.value.toLowerCase();
+
+
+  filteredJobs = allJobs.filter(job => {
+
+    const text = [
+
+      job.title,
+      job.company,
+      job.department,
+      job.location,
+      job.state,
+      job.category,
+      job.source,
+      job.type,
+      job.qualification,
+      job.notificationNumber,
+      job.vacancies
+
+    ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+
+    const matchesSearch =
+      !q || text.includes(q);
+
+
+    const matchesState =
+      !state ||
+      getState(job).toLowerCase() === state;
+
+
+    const matchesDepartment =
+      !department ||
+      getDepartment(job).toLowerCase() === department;
+
+
+    const matchesSource =
+      !source ||
+      getSource(job).toLowerCase() === source;
+
+
+    const jobQual = getQualification(job).toLowerCase();
+
+    const matchesQualification =
+      !qualification ||
+      (qualification === "10th" &&
+        /10th|matric|ssc|secondary/.test(jobQual)) ||
+      (qualification === "inter / 12th" &&
+        /inter|12th|intermediate|higher secondary|plus ?2/.test(jobQual)) ||
+      (qualification === "iti" &&
+        /iti/.test(jobQual)) ||
+      (qualification === "diploma" &&
+        /diploma|polytechnic/.test(jobQual)) ||
+      (qualification === "degree / graduate" &&
+        /degree|graduate|graduation|b\.?tech|b\.?e\.?|b\.?sc|b\.?com|b\.?a\.?|bachelor/.test(jobQual)) ||
+      (qualification === "post graduate" &&
+        /post graduate|postgraduate|pg|master|m\.?a\.?|m\.?sc|m\.?com|m\.?tech|m\.?e\.?|mba|mca/.test(jobQual)) ||
+      (qualification === "phd" &&
+        /phd|doctorate/.test(jobQual)) ||
+      (qualification === "professional" &&
+        /ca|cma|cs|llb|llm|mbbs|bds|engineering|professional/.test(jobQual));
+
+    const matchesType =
+      !type ||
+      getType(job).toLowerCase() === type;
+
+
+    const matchesCategory =
+      !category ||
+      getCategory(job).toLowerCase() === category;
+
+
+    return (
+      matchesSearch &&
+      matchesState &&
+      matchesDepartment &&
+      matchesSource &&
+      matchesQualification &&
+      matchesType &&
+      matchesCategory
+    );
+
+  });
+
+
+  sortJobs();
+
+  renderJobs();
+
+  document.getElementById("status").textContent =
+    `${filteredJobs.length} of ${allJobs.length} records`;
+}
+
+
+function sortJobs(){
+
+  const mode = sortFilter.value;
+
+  filteredJobs.sort((a,b)=>{
+
+    if(mode === "title"){
+
+      return String(a.title || "")
+        .localeCompare(
+          String(b.title || "")
+        );
+    }
+
+
+    const da = getDateValue(a);
+    const db = getDateValue(b);
+
+
+    if(mode === "oldest"){
+      return da - db;
+    }
+
+    return db - da;
+  });
+}
+
+
+function getDateValue(job){
+
+  const dates = [
+    job.updatedAt,
+    job.createdAt,
+    job.notificationDate,
+    job.lastDate,
+    job.applicationLastDate
+  ];
+
+  for(const d of dates){
+
+    if(d){
+
+      const time =
+        new Date(d).getTime();
+
+      if(!Number.isNaN(time)){
+        return time;
+      }
+    }
+  }
+
+  return 0;
+}
+
+
+function updateStats(){
+
+  document.getElementById("totalCount").textContent =
+    allJobs.length;
+
+
+  document.getElementById("jobCount").textContent =
+    allJobs.filter(j =>
+      getCategory(j)
+        .toLowerCase()
+        .includes("job")
+    ).length;
+
+
+  document.getElementById("notificationCount").textContent =
+    allJobs.filter(j =>
+      getCategory(j)
+        .toLowerCase()
+        .includes("notification")
+    ).length;
+
+
+  document.getElementById("resultCount").textContent =
+    allJobs.filter(j =>
+      getCategory(j)
+        .toLowerCase()
+        .includes("result")
+    ).length;
+}
+
+
+function renderJobs(){
+
+  const box =
+    document.getElementById("results");
+
+
+  if(filteredJobs.length === 0){
+
+    box.innerHTML = `
+      <div class="empty">
+        🔍 No matching government records found.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    filteredJobs
+      .slice(0,100)
+      .map((job,index)=>
+        createCard(job,index)
+      )
+      .join("");
+
+
+  if(filteredJobs.length > 100){
+
+    box.innerHTML += `
+      <div class="empty">
+        Showing first 100 records.<br>
+        Use search or filters to narrow results.
+      </div>
+    `;
+  }
+}
+
+
+function createCard(job,index){
+
+  const title =
+    job.title ||
+    "Government Opportunity";
+
+
+  const company =
+    job.company ||
+    "Government Department";
+
+
+  const location =
+    job.location ||
+    job.state ||
+    "India";
+
+
+  const source =
+    getSource(job);
+
+
+  const type =
+    getType(job);
+
+
+  const department =
+    getDepartment(job);
+
+
+  const qualification =
+    getQualification(job);
+
+
+  const vacancies =
+    job.vacancies ||
+    "See notification";
+
+
+  const salary =
+    job.salary ||
+    "See official notification";
+
+
+  const lastDate =
+    job.applicationLastDate ||
+    job.lastDate ||
+    "See official notification";
+
+
+  const notification =
+    job.notificationNumber ||
+    "";
+
+
+  const url =
+    job.url ||
+    job.sourceUrl ||
+    "#";
+
+
+  const applyUrl =
+    job.applyUrl ||
+    job.applicationUrl ||
+    url ||
+    "#";
+
+
+  return `
+
+    <div class="card">
+
+      <h3>
+        ${escapeHtml(title)}
+      </h3>
+
+
+      <div class="meta">
+
+        <span class="tag source">
+          🏛️ ${escapeHtml(source)}
+        </span>
+
+        <span class="tag type">
+          📋 ${escapeHtml(type)}
+        </span>
+
+        <span class="tag">
+          📍 ${escapeHtml(location)}
+        </span>
+
+      </div>
+
+
+      <div class="date">
+        🏢 <b>Department:</b>
+        ${escapeHtml(department)}
+      </div>
+
+
+      <div class="info">
+
+        <div class="info-box">
+          <small>🎓 Qualification</small>
+          <strong>
+            ${escapeHtml(qualification)}
+          </strong>
+        </div>
+
+
+        <div class="info-box">
+          <small>👥 Vacancies</small>
+          <strong>
+            ${escapeHtml(vacancies)}
+          </strong>
+        </div>
+
+
+        <div class="info-box">
+          <small>💰 Salary</small>
+          <strong>
+            ${escapeHtml(salary)}
+          </strong>
+        </div>
+
+
+        <div class="info-box">
+          <small>📂 Category</small>
+          <strong>
+            ${escapeHtml(getCategory(job))}
+          </strong>
+        </div>
+
+      </div>
+
+
+      ${
+        notification
+        ?
+        `
+        <div class="date">
+          📝 Notification:
+          ${escapeHtml(notification)}
+        </div>
+        `
+        :
+        ""
+      }
+
+
+      <div class="date">
+        ⏰ Last Date:
+        <b>${escapeHtml(lastDate)}</b>
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="details-btn"
+          onclick="showDetails(${index})"
+        >
+          📄 VIEW DETAILS
+        </button>
+
+
+        ${
+          applyUrl &&
+          applyUrl !== "#"
+          ?
+          `
+          <a
+            href="${safeUrl(applyUrl)}"
+            target="_blank"
+            rel="noopener"
+            class="apply-btn"
+          >
+            🚀 APPLY NOW
+          </a>
+          `
+          :
+          `
+          <button
+            class="apply-btn"
+            disabled
+          >
+            🚫 APPLY LINK
+          </button>
+          `
+        }
+
+      </div>
+
+    </div>
+
+  `;
+}
+
+
+function showDetails(index){
+
+  const job =
+    filteredJobs[index];
+
+
+  if(!job){
+    return;
+  }
+
+
+  document.getElementById("modalTitle")
+    .textContent =
+      job.title ||
+      "Government Opportunity";
+
+
+  const fields = [
+
+    ["🏢 Company",job.company],
+
+    ["🏛️ Department",getDepartment(job)],
+
+    ["📍 Location",job.location || job.state],
+
+    ["🇮🇳 State",job.state],
+
+    ["🏛️ Source",getSource(job)],
+
+    ["📋 Type",getType(job)],
+
+    ["📂 Category",getCategory(job)],
+
+    ["🎓 Qualification",getQualification(job)],
+
+    ["👥 Vacancies",job.vacancies],
+
+    ["💰 Salary",job.salary],
+
+    ["⏰ Last Date",
+      job.applicationLastDate ||
+      job.lastDate],
+
+    ["📝 Notification Number",
+      job.notificationNumber]
+
+  ];
+
+
+  document.getElementById("modalContent")
+    .innerHTML =
+      fields
+        .filter(([label,val]) =>
+          val !== undefined &&
+          val !== null &&
+          String(val).trim() !== ""
+        )
+        .map(([label,val]) => `
+          <div class="detail-row">
+
+            <label>
+              ${escapeHtml(label)}
+            </label>
+
+            <div>
+              ${escapeHtml(val)}
+            </div>
+
+          </div>
+        `)
+        .join("");
+
+
+  const officialUrl =
+    job.url ||
+    job.sourceUrl ||
+    "#";
+
+
+  const applyUrl =
+    job.applyUrl ||
+    job.applicationUrl ||
+    officialUrl ||
+    "#";
+
+
+  const view =
+    document.getElementById("modalView");
+
+
+  const apply =
+    document.getElementById("modalApply");
+
+
+  view.href =
+    safeUrl(officialUrl);
+
+
+  apply.href =
+    safeUrl(applyUrl);
+
+
+  view.style.display =
+    officialUrl !== "#"
+    ? "block"
+    : "none";
+
+
+  apply.style.display =
+    applyUrl !== "#"
+    ? "block"
+    : "none";
+
+
+  document.getElementById("detailModal")
+    .classList.add("show");
+}
+
+
+function closeDetails(){
+
+  document.getElementById("detailModal")
+    .classList.remove("show");
+}
+
+
+function closeModalOutside(event){
+
+  if(event.target.id === "detailModal"){
+    closeDetails();
+  }
+}
+
+
+document.addEventListener("keydown",event=>{
+
+  if(event.key === "Escape"){
+    closeDetails();
+  }
+
+});
+
+
+function clearFilters(){
+
+  searchInput.value = "";
+
+  stateFilter.value = "";
+
+  departmentFilter.value = "";
+
+  sourceFilter.value = "";
+
+  qualificationFilter.value = "";
+
+  typeFilter.value = "";
+
+  categoryFilter.value = "";
+
+  sortFilter.value = "newest";
+
+  applyFilters();
+}
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -451,231 +1378,40 @@ function esc(v){
     .replace(/'/g,"&#039;");
 }
 
-/* ======================================
-   ICON
-   ====================================== */
 
-function icon(type){
+function safeUrl(value){
 
-  const t = String(type || "").toUpperCase();
+  try{
 
-  if(t.includes("RESULT")) return "📝";
-  if(t.includes("ADMIT")) return "🎫";
-  if(t.includes("NOTIFICATION")) return "📢";
-  if(t.includes("JOB")) return "💼";
+    const u =
+      new URL(
+        value,
+        window.location.href
+      );
 
-  return "📢";
-}
-
-/* ======================================
-   CATEGORY
-   ====================================== */
-
-function setCategory(value,button){
-
-  category = value;
-
-  document
-    .querySelectorAll(".nav button")
-    .forEach(b => b.classList.remove("active"));
-
-  button.classList.add("active");
-
-  render();
-}
-
-/* ======================================
-   FILTER OPTIONS
-   ====================================== */
-
-function fillFilters(){
-
-  const q = document.getElementById("qualification");
-  const s = document.getElementById("state");
-  const so = document.getElementById("source");
-
-  const qualifications = [
-    ...new Set(
-      allJobs
-        .map(j => j.qualification)
-        .filter(v =>
-          v &&
-          v !== "See official notification"
-        )
-    )
-  ].sort();
-
-  const states = [
-    ...new Set(
-      allJobs
-        .map(j => j.location)
-        .filter(v =>
-          v &&
-          v !== "India"
-        )
-    )
-  ].sort();
-
-  const sources = [
-    ...new Set(
-      allJobs
-        .map(j => j.source)
-        .filter(Boolean)
-    )
-  ].sort();
-
-  q.innerHTML =
-    '<option value="">All Qualifications</option>';
-
-  s.innerHTML =
-    '<option value="">All States</option>';
-
-  so.innerHTML =
-    '<option value="">All Sources</option>';
-
-  qualifications.forEach(v => {
-    q.innerHTML +=
-      `<option value="${esc(v)}">${esc(v)}</option>`;
-  });
-
-  states.forEach(v => {
-    s.innerHTML +=
-      `<option value="${esc(v)}">${esc(v)}</option>`;
-  });
-
-  sources.forEach(v => {
-    so.innerHTML +=
-      `<option value="${esc(v)}">${esc(v)}</option>`;
-  });
-}
-
-/* ======================================
-   GET CATEGORY TYPE
-   ====================================== */
-
-function getType(j){
-
-  const text = (
-    String(j.type || "") + " " +
-    String(j.category || "") + " " +
-    String(j.title || "")
-  ).toUpperCase();
-
-  if(
-    text.includes("RESULT") ||
-    text.includes("ANSWER KEY") ||
-    text.includes("ALLOCATION")
-  ){
-    return "RESULT";
-  }
-
-  if(
-    text.includes("ADMIT") ||
-    text.includes("HALL TICKET")
-  ){
-    return "ADMIT CARD";
-  }
-
-  if(
-    text.includes("RECRUITMENT") ||
-    text.includes("VACANC") ||
-    text.includes("APPLICATION") ||
-    text.includes("JOB")
-  ){
-    return "JOB";
-  }
-
-  return "NOTIFICATION";
-}
-
-/* ======================================
-   RENDER
-   ====================================== */
-
-function render(){
-
-  const box = document.getElementById("jobs");
-  const search =
-    document.getElementById("search")
-      .value
-      .toLowerCase()
-      .trim();
-
-  const qualification =
-    document.getElementById("qualification").value;
-
-  const state =
-    document.getElementById("state").value;
-
-  const source =
-    document.getElementById("source").value;
-
-  let filtered = allJobs.filter(j => {
-
-    const type = getType(j);
 
     if(
-      category !== "ALL" &&
-      type !== category
+      u.protocol === "http:" ||
+      u.protocol === "https:"
     ){
-      return false;
+
+      return u.href;
     }
 
-    if(
-      qualification &&
-      j.qualification !== qualification
-    ){
-      return false;
-    }
 
-    if(
-      state &&
-      j.location !== state
-    ){
-      return false;
-    }
+    return "#";
 
-    if(
-      source &&
-      j.source !== source
-    ){
-      return false;
-    }
-
-    if(search){
-
-      const text = JSON.stringify(j)
-        .toLowerCase();
-
-      if(!text.includes(search)){
-        return false;
-      }
-    }
-
-    return true;
-  });
-
-  document.getElementById("status").innerHTML =
-    `🟢 JOBMITRA INDIA — ${filtered.length} Updates`;
-
-  if(!filtered.length){
-
-    box.innerHTML = `
-      <div class="empty">
-        😕 <b>No jobs found.</b>
-        <br><br>
-        Try another search or filter.
-      </div>
-    `;
-
-    return;
   }
+  catch{
 
-  box.innerHTML = filtered.map((j,i) => {
+    return "#";
+  }
+}
 
-    const type = getType(j);
 
-    return `
-      <article class="card">
+loadJobs();
 
-        <div class="badge
+</script>
+
+</body>
+</html>
