@@ -331,7 +331,7 @@ async function readRRB(limit = 1000) {
         const response = await axios.get(
             "https://rrb.indianrailways.gov.in/chandigarh",
             {
-                timeout: 30000,
+                timeout: 8000,
                 headers: HEADERS,
                 maxRedirects: 5,
                 httpsAgent: new https.Agent({
